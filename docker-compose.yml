@@ -1,0 +1,72 @@
+version: "2"
+
+services:
+  elasticsearch:
+    container_name: elasticsearch-srv
+    build: elasticsearch
+    #ports:
+    #  - 9200:9200
+    volumes:
+      - esdata:/opt/elasticsearch/data
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+      nofile:
+        soft: 65536
+        hard: 65536
+    mem_limit: 512m
+
+  logstash:
+    container_name: logstash-srv
+    build: logstash
+    environment: 
+      - LOGSPOUT=ignore
+    links:
+      - elasticsearch
+
+  kibana:
+    container_name: kibana-srv
+    build: kibana
+    links:
+      - elasticsearch
+    #ports:
+    #  - 5601:5601
+
+  logspout:
+    image: gliderlabs/logspout
+    environment:
+      - DEBUG=true
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    command: syslog://logstash-srv:5000
+    links: 
+      - logstash
+    #network_mode: "container:logstash-srv"
+
+  nginx:
+    build: nginx
+    links:
+      - kibana
+    ports:
+      - 80:80
+
+#   headplug:
+#     image: mobz/elasticsearch-head:5
+#     links: 
+#       - elasticsearch
+#     ports:
+#       - 9100:9100
+
+#   cadvisor:
+#     image: google/cadvisor:latest
+#     volumes:
+#       - /:/rootfs:ro
+#       - /var/run:/var/run:rw
+#       - /sys:/sys:ro
+#       - /var/lib/docker/:/var/lib/docker:ro
+#     ports:
+#       - "8090:8080"
+
+volumes: 
+  esdata:
