@@ -1,4 +1,4 @@
-# Docker containers for ELK Stack (Elasticsearch, Logstash and Kibana)
+# ELK&Friends Stack, Elasticsearch, Logstash, Kibana with Filebeat and Logspout shippers
 
 ## Preparation
 

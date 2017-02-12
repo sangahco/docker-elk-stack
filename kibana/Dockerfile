@@ -21,4 +21,4 @@ EXPOSE 5601
 VOLUME /opt/kibana/data
 
 USER $DEFAULT_ES_USER
-CMD ["/opt/kibana/bin/kibana"]
+ENTRYPOINT ["/opt/kibana/bin/kibana"]

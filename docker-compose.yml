@@ -1,9 +1,11 @@
-version: "2"
+version: "3"
 
 services:
   elasticsearch:
     container_name: elasticsearch-srv
     build: elasticsearch
+    environment: 
+      - "ES_JAVA_OPTS=-Xmx512m -Xms512m"
     #ports:
     #  - 9200:9200
     volumes:
@@ -15,21 +17,21 @@ services:
       nofile:
         soft: 65536
         hard: 65536
-    mem_limit: 512m
+    #mem_limit: 512m
 
   logstash:
     container_name: logstash-srv
     build: logstash
+    ports:
+      - 127.0.0.1:5043:5043
     environment: 
       - LOGSPOUT=ignore
-    links:
-      - elasticsearch
 
   kibana:
     container_name: kibana-srv
     build: kibana
-    links:
-      - elasticsearch
+    environment: 
+      - LOGSPOUT=ignore
     #ports:
     #  - 5601:5601
 
@@ -39,34 +41,37 @@ services:
       - DEBUG=true
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
-    command: syslog://logstash-srv:5000
-    links: 
-      - logstash
-    #network_mode: "container:logstash-srv"
+    command: syslog://localhost:5000
+    network_mode: "service:logstash"
 
   nginx:
     build: nginx
-    links:
-      - kibana
     ports:
-      - 80:80
+      - 5601:5601
+      - 9200:9200
 
-#   headplug:
-#     image: mobz/elasticsearch-head:5
-#     links: 
-#       - elasticsearch
-#     ports:
-#       - 9100:9100
+  filebeat:
+    container_name: filebeat-srv
+    build: filebeat
+    #volumes: 
+    #  - /var/log:/usr/local/log
+    environment: 
+      - LOGSPOUT=ignore
 
-#   cadvisor:
-#     image: google/cadvisor:latest
-#     volumes:
-#       - /:/rootfs:ro
-#       - /var/run:/var/run:rw
-#       - /sys:/sys:ro
-#       - /var/lib/docker/:/var/lib/docker:ro
-#     ports:
-#       - "8090:8080"
+  headplug:
+    image: mobz/elasticsearch-head:5
+    ports:
+      - 9100:9100
+
+  cadvisor:
+    image: google/cadvisor:latest
+    volumes:
+      - /:/rootfs:ro
+      - /var/run:/var/run:rw
+      - /sys:/sys:ro
+      - /var/lib/docker/:/var/lib/docker:ro
+    ports:
+      - "8080:8080"
 
 volumes: 
   esdata:

@@ -21,11 +21,11 @@ RUN set -ex && \
 
 COPY ./config/elasticsearch.yml $ES_HOME/config/
 
-HEALTHCHECK --timeout=60s CMD wget -q -O - http://localhost:9200/_cat/health
+HEALTHCHECK --interval=60s CMD curl --fail http://localhost:9200/_cat/health || exit 1
 
 EXPOSE 9200 9300
 
 USER $DEFAULT_ES_USER
 WORKDIR $ES_HOME
 VOLUME $ES_HOME/data
-CMD ["/opt/elasticsearch/bin/elasticsearch"]
+ENTRYPOINT ["/opt/elasticsearch/bin/elasticsearch"]

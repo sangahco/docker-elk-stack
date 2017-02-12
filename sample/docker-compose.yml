@@ -1,0 +1,19 @@
+version: "2"
+
+services: 
+
+  nginx:
+    container_name: sample-web-srv
+    image: nginx:alpine
+    ports: 
+      - 80:80
+
+#   logspout:
+#     container_name: sample-logging-srv
+#     image: gliderlabs/logspout
+#     #environment:
+#     #  - DEBUG=true
+#     volumes:
+#       - /var/run/docker.sock:/var/run/docker.sock
+#     command: syslog://localhost:5000
+#     network_mode: "container:logstash-srv"

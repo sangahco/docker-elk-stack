@@ -5,4 +5,6 @@ RUN rm -f /usr/share/logstash/pipeline/logstash.conf
 ADD pipeline/ /usr/share/logstash/pipeline/
 ADD config/ /usr/share/logstash/config/
 
+EXPOSE 5000 5043
+
 CMD ["-f", "/usr/share/logstash/pipeline/logstash.conf"]
