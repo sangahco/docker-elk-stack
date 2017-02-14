@@ -5,7 +5,7 @@ services:
     container_name: elasticsearch-srv
     build: elasticsearch
     environment: 
-      - "ES_JAVA_OPTS=-Xmx512m -Xms512m"
+      - "ES_JAVA_OPTS=-Xmx256m -Xms256m"
     #ports:
     #  - 9200:9200
     volumes:
@@ -39,6 +39,7 @@ services:
     image: gliderlabs/logspout
     environment:
       - DEBUG=true
+      - LOGSPOUT=ignore
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
     command: syslog://localhost:5000
@@ -49,12 +50,14 @@ services:
     ports:
       - 5601:5601
       - 9200:9200
+    environment: 
+      - LOGSPOUT=ignore
 
   filebeat:
     container_name: filebeat-srv
     build: filebeat
-    #volumes: 
-    #  - /var/log:/usr/local/log
+    volumes: 
+      - ${LOG_PATH}:/usr/local/log
     environment: 
       - LOGSPOUT=ignore
 
@@ -62,6 +65,8 @@ services:
     image: mobz/elasticsearch-head:5
     ports:
       - 9100:9100
+    environment: 
+      - LOGSPOUT=ignore
 
   cadvisor:
     image: google/cadvisor:latest
@@ -72,6 +77,8 @@ services:
       - /var/lib/docker/:/var/lib/docker:ro
     ports:
       - "5602:8080"
+    environment: 
+      - LOGSPOUT=ignore
 
 volumes: 
   esdata:

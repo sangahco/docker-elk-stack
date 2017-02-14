@@ -41,6 +41,7 @@ filebeat.prospectors:
   # Paths that should be crawled and fetched. Glob based paths.
   paths:
     - /usr/local/log/*.log
+    - /usr/local/log/*/*.log
     #- /var/log/*.log
     #- c:\programdata\elasticsearch\logs\*
 
