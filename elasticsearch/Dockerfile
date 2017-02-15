@@ -17,6 +17,8 @@ RUN set -ex && \
     chown -R $DEFAULT_ES_USER: $ES_HOME/config && \
     mkdir $ES_HOME/data && chown -R $DEFAULT_ES_USER: $ES_HOME/data && \
     mkdir $ES_HOME/logs && chown -R $DEFAULT_ES_USER: $ES_HOME/logs && \
+    sed -i -e 's/-Xms/#-Xms/' $ES_HOME/config/jvm.options && \
+    sed -i -e 's/-Xmx/#-Xmx/' $ES_HOME/config/jvm.options && \
     rm -rf /tmp/*
 
 COPY ./config/elasticsearch.yml $ES_HOME/config/

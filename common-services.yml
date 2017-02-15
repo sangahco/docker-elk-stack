@@ -19,6 +19,7 @@ services:
       - 127.0.0.1:5043:5043
     environment: 
       - LOGSPOUT=ignore
+      - LS_JAVA_OPTS
 
   kibana:
     container_name: kibana-srv
