@@ -1,0 +1,71 @@
+version: "2"
+
+services:
+  elasticsearch:
+    container_name: elasticsearch-srv
+    environment: 
+      - ES_JAVA_OPTS
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+      nofile:
+        soft: 65536
+        hard: 65536
+    #mem_limit: 512m
+
+  logstash:
+    container_name: logstash-srv
+    ports:
+      - 127.0.0.1:5043:5043
+    environment: 
+      - LOGSPOUT=ignore
+
+  kibana:
+    container_name: kibana-srv
+    environment: 
+      - LOGSPOUT=ignore
+    #ports:
+    #  - 5601:5601
+
+  logspout:
+    image: gliderlabs/logspout
+    environment:
+      - DEBUG=true
+      - LOGSPOUT=ignore
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    command: syslog://localhost:5000
+
+  nginx:
+    ports:
+      - 5601:5601
+      - 9200:9200
+    environment: 
+      - LOGSPOUT=ignore
+
+  filebeat:
+    container_name: filebeat-srv
+    volumes:
+      - ${LOG_PATH}:/usr/local/log
+    environment: 
+      - LOGSPOUT=ignore
+
+  headplug:
+    image: mobz/elasticsearch-head:5
+    ports:
+      - 9100:9100
+    environment: 
+      - LOGSPOUT=ignore
+
+  cadvisor:
+    image: google/cadvisor:latest
+    volumes:
+      - /:/rootfs:ro
+      - /var/run:/var/run:rw
+      - /sys:/sys:ro
+      - /var/lib/docker/:/var/lib/docker:ro
+    ports:
+      - "5602:8080"
+    environment: 
+      - LOGSPOUT=ignore

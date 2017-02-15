@@ -2,23 +2,21 @@ version: "2"
 
 services:
   elasticsearch:
-    build: elasticsearch
+    image: ${REGISTRY_URL}/elasticsearch
     volumes:
       - esdata:/opt/elasticsearch/data
     extends: 
       file: common-services.yml
       service: elasticsearch
-    environment: 
-      - "ES_JAVA_OPTS=-Xmx256m -Xms256m"
 
   logstash:
-    build: logstash
+    image: ${REGISTRY_URL}/logstash
     extends: 
       file: common-services.yml
       service: logstash
 
   kibana:
-    build: kibana
+    image: ${REGISTRY_URL}/kibana
     extends: 
       file: common-services.yml
       service: kibana
@@ -30,13 +28,13 @@ services:
     network_mode: "service:logstash"
 
   nginx:
-    build: nginx
+    image: ${REGISTRY_URL}/nginx-elk
     extends: 
       file: common-services.yml
       service: nginx
 
   filebeat:
-    build: filebeat
+    image: ${REGISTRY_URL}/filebeat
     extends: 
       file: common-services.yml
       service: filebeat
