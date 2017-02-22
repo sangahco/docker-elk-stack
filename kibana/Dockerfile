@@ -8,7 +8,7 @@ ENV KB_HOME=/opt/kibana \
 RUN set -ex && \
     useradd -ms /bin/bash $DEFAULT_KB_USER && \
     cd /tmp && \
-    curl https://artifacts.elastic.co/downloads/kibana/kibana-$KIBANA_VERSION-linux-x86_64.tar.gz -o pkg.tar.gz && \
+    curl https://s3.ap-northeast-2.amazonaws.com/sangah-b1/kibana-${KIBANA_VERSION}-linux-x86_64.tar.gz -o pkg.tar.gz && \
     tar -xf pkg.tar.gz && \
     mkdir -p $KB_HOME && cp -a kibana-*/. $KB_HOME && \
     rm -rf /tmp/*

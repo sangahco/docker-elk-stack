@@ -9,7 +9,7 @@ ENV LS_VERSION=5.2.1 \
 RUN set -ex && \
     useradd -ms /bin/bash $DEFAULT_LS_USER && \
     cd /tmp && \
-    curl http://dev.sangah.com/owncloud/index.php/s/7yX5JSQwyN8xD8H/download -o /tmp/pkg.tar.gz && \
+    curl https://s3.ap-northeast-2.amazonaws.com/sangah-b1/logstash-${LS_VERSION}.tar.gz -o /tmp/pkg.tar.gz && \
     tar -xf pkg.tar.gz && \
     mkdir -p $LS_HOME && cp -a logstash-*/. $LS_HOME && \
     chown -R $DEFAULT_LS_USER: $LS_HOME && \
