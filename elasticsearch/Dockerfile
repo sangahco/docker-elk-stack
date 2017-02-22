@@ -1,7 +1,7 @@
 FROM openjdk:8-jre
 MAINTAINER Emanuele Disco <emanuele.disco@gmail.com>
 
-ENV ES_VERSION=5.2.0 \
+ENV ES_VERSION=5.2.1 \
     ES_HOME=/usr/share/elasticsearch \
     DEFAULT_ES_USER=elasticsearch \
     ES_JAVA_OPTS="-Xmx256m -Xms256m"
@@ -9,7 +9,7 @@ ENV ES_VERSION=5.2.0 \
 RUN set -ex && \
     useradd -ms /bin/bash $DEFAULT_ES_USER && \
     cd /tmp && \
-    curl https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-${ES_VERSION}.tar.gz -o pkg.tar.gz && \
+    curl https://s3.ap-northeast-2.amazonaws.com/sangah-b1/elasticsearch-${ES_VERSION}.tar.gz -o pkg.tar.gz && \
     tar -xf pkg.tar.gz && \
     mkdir -p $ES_HOME && cp -a elasticsearch-*/. $ES_HOME && \
     chown -R $DEFAULT_ES_USER: $ES_HOME/config && \
