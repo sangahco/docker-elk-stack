@@ -15,8 +15,6 @@ services:
 
   logstash:
     container_name: logstash-srv
-    ports:
-      - 127.0.0.1:5043:5043
     environment: 
       - LOGSPOUT=ignore
       - LS_JAVA_OPTS
@@ -25,8 +23,6 @@ services:
     container_name: kibana-srv
     environment: 
       - LOGSPOUT=ignore
-    #ports:
-    #  - 5601:5601
 
   logspout:
     image: gliderlabs/logspout

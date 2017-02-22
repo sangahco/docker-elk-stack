@@ -1,26 +1,27 @@
-FROM docker.elastic.co/logstash/logstash:5.2.1
+FROM openjdk:8-jre
 MAINTAINER Emanuele Disco <emanuele.disco@gmail.com>
 
 ENV LS_VERSION=5.2.1 \
     LS_HOME=/usr/share/logstash \
-    DEFAULT_LS_USER=elasticsearch \
+    DEFAULT_LS_USER=logstash \
     LS_JAVA_OPTS="-Xmx256m -Xms256m"
 
-ADD https://artifacts.elastic.co/downloads/logstash/logstash-5.2.1.tar.gz /tmp/pkg.tar.gz
-
 RUN set -ex && \
+    useradd -ms /bin/bash $DEFAULT_LS_USER && \
     cd /tmp && \
-    tar -xvf pkg.tar.gz && \
-    mkdir -p /opt && mv elasticsearch-* $LS_HOME && \
-    chown -R $DEFAULT_ES_USER: $LS_HOME && \
+    curl http://dev.sangah.com/owncloud/index.php/s/7yX5JSQwyN8xD8H/download -o /tmp/pkg.tar.gz && \
+    tar -xf pkg.tar.gz && \
+    mkdir -p $LS_HOME && cp -a logstash-*/. $LS_HOME && \
+    chown -R $DEFAULT_LS_USER: $LS_HOME && \
     rm -rf /tmp/*
 
 ADD pipeline/ $LS_HOME/pipeline/
 ADD config/ $LS_HOME/config/
 
-EXPOSE 5000 5043
+ENV PATH $LS_HOME/bin:$PATH
+USER $DEFAULT_LS_USER
+WORKDIR $LS_HOME
 
-USER $DEFAULT_ES_USER
-WORKDIR $ES_HOME
+EXPOSE 5000 5043
 
 CMD ["logstash", "-f", "/usr/share/logstash/pipeline/"]

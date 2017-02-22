@@ -4,7 +4,7 @@ services:
   elasticsearch:
     image: ${REGISTRY_URL}/elasticsearch
     volumes:
-      - esdata:/opt/elasticsearch/data
+    - esdata:/opt/elasticsearch/data
     extends: 
       file: common-services.yml
       service: elasticsearch
@@ -14,6 +14,8 @@ services:
     extends: 
       file: common-services.yml
       service: logstash
+    ports:
+    - 127.0.0.1:5043:5043
 
   kibana:
     image: ${REGISTRY_URL}/kibana
@@ -39,7 +41,7 @@ services:
       file: common-services.yml
       service: filebeat
     volumes: 
-      - fbdata:/data
+    - fbdata:/data
 
   headplug:
     extends: 

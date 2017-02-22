@@ -1,24 +1,25 @@
 FROM openjdk:8-jre
 MAINTAINER Emanuele Disco <emanuele.disco@gmail.com>
 
+ENV KB_HOME=/opt/kibana \
+    DEFAULT_KB_USER=kibana \
+    KIBANA_VERSION=5.2.0
+
 RUN set -ex && \
+    useradd -ms /bin/bash $DEFAULT_KB_USER && \
     cd /tmp && \
-    curl https://artifacts.elastic.co/downloads/kibana/kibana-5.2.0-linux-x86_64.tar.gz -o pkg.tar.gz && \
-    tar -xvf pkg.tar.gz && \
-    mkdir -p /opt && mv kibana-* /opt/kibana && \
+    curl https://artifacts.elastic.co/downloads/kibana/kibana-$KIBANA_VERSION-linux-x86_64.tar.gz -o pkg.tar.gz && \
+    tar -xf pkg.tar.gz && \
+    mkdir -p $KB_HOME && cp -a kibana-*/. $KB_HOME && \
     rm -rf /tmp/*
 
-COPY ./kibana.yml /opt/kibana/config/
+COPY ./kibana.yml $KB_HOME/config/
 
-ENV ES_HOME=/opt/kibana \
-    DEFAULT_ES_USER=kibana
-
-RUN useradd -ms /bin/bash $DEFAULT_ES_USER
-WORKDIR $ES_HOME
+ENV PATH $KB_HOME/bin:$PATH
 
 EXPOSE 5601
 
 VOLUME /opt/kibana/data
-
-USER $DEFAULT_ES_USER
-ENTRYPOINT ["/opt/kibana/bin/kibana"]
+WORKDIR $KB_HOME
+USER $DEFAULT_KB_USER
+ENTRYPOINT ["kibana"]
