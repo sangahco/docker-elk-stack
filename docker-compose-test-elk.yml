@@ -1,0 +1,31 @@
+version: "2"
+
+services:
+  elasticsearch:
+    build: elasticsearch
+    volumes:
+      - esdata:/opt/elasticsearch/data
+    extends: 
+      file: common-services.yml
+      service: elasticsearch
+    environment: 
+      - ES_JAVA_OPTS=-Xmx1g -Xms1g
+
+  logstash:
+    build: logstash
+    extends: 
+      file: common-services.yml
+      service: logstash
+    environment: 
+      - LS_JAVA_OPTS=-Xmx1g -Xms1g
+
+  kibana:
+    build: kibana
+    extends: 
+      file: common-services.yml
+      service: kibana
+    ports: 
+    - 5601:5601
+
+volumes:
+  esdata:
