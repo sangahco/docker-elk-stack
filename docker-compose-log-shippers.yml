@@ -1,0 +1,23 @@
+version: "2"
+
+services:
+
+  logspout:
+    extends: 
+      file: common-services.yml
+      service: logspout
+    extra_hosts: 
+    - "logstash:${LOGSTASH_HOST}"
+
+  filebeat:
+    image: ${REGISTRY_URL}/filebeat
+    extends: 
+      file: common-services.yml
+      service: filebeat
+    volumes: 
+    - fbdata:/data
+    extra_hosts: 
+    - "logstash:${LOGSTASH_HOST}"
+
+volumes:
+  fbdata:
