@@ -8,6 +8,7 @@ services:
       service: logspout
     extra_hosts: 
     - "logstash:${LOGSTASH_HOST}"
+    command: syslog://${LOGSTASH_HOST}:5000
 
   filebeat:
     image: ${REGISTRY_URL}/filebeat
