@@ -1,6 +1,7 @@
 version: "2"
 
 services:
+
   elasticsearch:
     build: elasticsearch
     volumes:
@@ -16,6 +17,10 @@ services:
     extends: 
       file: common-services.yml
       service: logstash
+    ports: 
+    - 5000:5000
+    - 5000:5000/udp
+    - 5043:5043
     environment: 
       - LS_JAVA_OPTS=-Xmx512m -Xms512m
 
@@ -24,29 +29,8 @@ services:
     extends: 
       file: common-services.yml
       service: kibana
-
-  logspout:
-    extends: 
-      file: common-services.yml
-      service: logspout
-    depends_on: 
-    - logstash
-    #network_mode: "service:logstash"
-
-  nginx:
-    build: nginx
-    extends: 
-      file: common-services.yml
-      service: nginx
-
-  filebeat:
-    build: filebeat
-    extends: 
-      file: common-services.yml
-      service: filebeat
-    volumes: 
-      - fbdata:/data
+    ports: 
+    - 5601:5601
 
 volumes:
   esdata:
-  fbdata:

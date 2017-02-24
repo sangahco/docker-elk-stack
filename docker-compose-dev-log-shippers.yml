@@ -1,0 +1,24 @@
+version: "2"
+
+services:
+
+  logspout:
+    extends: 
+      file: common-services.yml
+      service: logspout
+    depends_on: 
+    - logstash
+    command: syslog://logstash:5000
+    #network_mode: "service:logstash"
+
+  filebeat:
+    build: filebeat
+    extends: 
+      file: common-services.yml
+      service: filebeat
+    volumes: 
+      - fbdata:/data
+
+volumes:
+  esdata:
+  fbdata:

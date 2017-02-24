@@ -23,14 +23,6 @@ services:
       file: common-services.yml
       service: kibana
 
-  logspout:
-    extends: 
-      file: common-services.yml
-      service: logspout
-    depends_on: 
-    - logstash
-    #network_mode: "service:logstash"
-
   nginx:
     image: ${REGISTRY_URL}/nginx-elk
     extends: 
@@ -39,14 +31,6 @@ services:
     ports:
     - 5601:5601
     - 9200:9200
-
-  filebeat:
-    image: ${REGISTRY_URL}/filebeat
-    extends: 
-      file: common-services.yml
-      service: filebeat
-    volumes: 
-    - fbdata:/data
 
   headplug:
     extends: 

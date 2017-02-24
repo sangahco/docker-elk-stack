@@ -32,7 +32,6 @@ services:
       - LOGSPOUT=ignore
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
-    command: syslog://logstash:5000
 
   nginx:
     environment: 
