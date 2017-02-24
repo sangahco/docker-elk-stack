@@ -27,9 +27,9 @@ services:
     extends: 
       file: common-services.yml
       service: logspout
-    network_mode: "service:logstash"
     depends_on: 
     - logstash
+    #network_mode: "service:logstash"
 
   nginx:
     image: ${REGISTRY_URL}/nginx-elk
