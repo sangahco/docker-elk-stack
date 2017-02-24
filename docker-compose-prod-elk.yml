@@ -14,8 +14,10 @@ services:
     extends: 
       file: common-services.yml
       service: logstash
-    ports:
-    - 127.0.0.1:5043:5043
+    ports: 
+    - 5000:5000
+    - 5000:5000/udp
+    - 5043:5043
 
   kibana:
     image: ${REGISTRY_URL}/kibana
@@ -32,12 +34,12 @@ services:
     - 5601:5601
     - 9200:9200
 
-  headplug:
-    extends: 
-      file: common-services.yml
-      service: headplug
-    ports:
-    - 9100:9100
+#   headplug:
+#     extends: 
+#       file: common-services.yml
+#       service: headplug
+#     ports:
+#     - 9100:9100
 
 volumes:
   esdata:
