@@ -25,6 +25,7 @@ services:
       - LOGSPOUT=ignore
 
   logspout:
+    container_name: "datashipper-logspout"
     image: gliderlabs/logspout
     environment:
       - DEBUG=true
@@ -41,7 +42,7 @@ services:
       - LOGSPOUT=ignore
 
   filebeat:
-    container_name: filebeat-srv
+    container_name: "datashipper-filebeat"
     volumes:
       - ${LOG_PATH}:/usr/local/log
     environment: 

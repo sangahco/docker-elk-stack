@@ -1,0 +1,12 @@
+version: "2"
+
+services: 
+  headplug:
+    extends: 
+      file: common-services.yml
+      service: headplug
+
+  cadvisor:
+    extends: 
+      file: common-services.yml
+      service: cadvisor

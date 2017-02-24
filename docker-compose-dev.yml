@@ -47,16 +47,6 @@ services:
     volumes: 
       - fbdata:/data
 
-  headplug:
-    extends: 
-      file: common-services.yml
-      service: headplug
-
-  cadvisor:
-    extends: 
-      file: common-services.yml
-      service: cadvisor
-
 volumes:
   esdata:
   fbdata:
