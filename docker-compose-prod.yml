@@ -45,6 +45,11 @@ services:
     volumes: 
     - fbdata:/data
 
+  headplug:
+    extends: 
+      file: common-services.yml
+      service: headplug
+
 volumes:
   esdata:
   fbdata:
