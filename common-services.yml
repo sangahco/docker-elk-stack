@@ -35,9 +35,6 @@ services:
     command: syslog://logstash:5000
 
   nginx:
-    ports:
-      - 5601:5601
-      - 9200:9200
     environment: 
       - LOGSPOUT=ignore
 
@@ -50,8 +47,6 @@ services:
 
   headplug:
     image: mobz/elasticsearch-head:5
-    ports:
-      - 9100:9100
     environment: 
       - LOGSPOUT=ignore
 
@@ -62,7 +57,5 @@ services:
       - /var/run:/var/run:rw
       - /sys:/sys:ro
       - /var/lib/docker/:/var/lib/docker:ro
-    ports:
-      - "5602:8080"
     environment: 
       - LOGSPOUT=ignore
