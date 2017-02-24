@@ -9,7 +9,7 @@ services:
       file: common-services.yml
       service: elasticsearch
     environment: 
-      - ES_JAVA_OPTS=-Xmx512g -Xms512g
+      - ES_JAVA_OPTS=-Xmx512m -Xms512m
 
   logstash:
     build: logstash
@@ -17,7 +17,7 @@ services:
       file: common-services.yml
       service: logstash
     environment: 
-      - LS_JAVA_OPTS=-Xmx512g -Xms512g
+      - LS_JAVA_OPTS=-Xmx512m -Xms512m
 
   kibana:
     build: kibana
