@@ -3,11 +3,11 @@ version: "2"
 services:
   elasticsearch:
     image: ${REGISTRY_URL}/elasticsearch
-    volumes:
-    - esdata:/opt/elasticsearch/data
     extends: 
       file: common-services.yml
       service: elasticsearch
+    volumes:
+    - esdata:/opt/elasticsearch/data
 
   logstash:
     image: ${REGISTRY_URL}/logstash
