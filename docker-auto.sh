@@ -91,7 +91,8 @@ elif [ "$1" == "remove-all" ]; then
     exit 0
 
 elif [ "$1" == "logs" ]; then
-    docker-compose $CONF_ARG logs -f --tail 200
+    shift
+    docker-compose $CONF_ARG logs -f --tail 200 "$@"
     exit 0
 fi
 
