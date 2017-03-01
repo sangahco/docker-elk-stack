@@ -30,6 +30,10 @@ services:
     extends: 
       file: common-services.yml
       service: nginx
+    depends_on: 
+    - kibana
+    - elasticsearch
+    - logstash
     ports:
     - 5601:5601
     - 9200:9200

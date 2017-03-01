@@ -1,6 +1,6 @@
 # ELK&Friends Stack, Elasticsearch, Logstash, Kibana with Filebeat and Logspout shippers
 
-This is a logging service composed by several microservices:
+This is a logging service composed by several microservices (some of them not so *micro*):
 
 - **Elasticsearch** - The container for the log data, all the log is saved on this search engine
 - **Logstash** - Is the log aggregator, it takes log from log shippers and saved it into the search engine
@@ -16,28 +16,38 @@ This is a logging service composed by several microservices:
 
 ## Configurations available:
 
-- **docker-compose-dev.yml**
+- **docker-compose-dev-elk.yml**
 
   This is for testing the entire *ELK* (Elasticsearch, Logstash and Kibana) stack together with log shippers.
   Images are built and executed.
 
-- **docker-compose-elk-dev**
+- **docker-compose-prod-elk.yml**
 
-  This is for testing only *ELK* stack with no shippers.
-  Images are built and executed.
+  Production configuration for the ELK stack.
 
-- **docker-compose-prod**
+- **docker-compose-prod-log-shippers.yml**
 
-  This configuration will deploy the *ELK* stack to a production server, this can be called *The Log Server*,
-  all logs from any applications will be brought here from the log shippers (*Logspout*, *Filebeat*).
-  The images are taken directly from our registry.
+  Production configuration for log shippers.
+  You should use this on the server where the web application is running, 
+  in order to send logs to the ELK stack. `LOGSTASH_HOST` required.
 
-- **docker-compose-log-shippers**
+- **docker-compose-dev-log-shippers.yml**
 
-  This configuration contains only log shippers and it should be deployed on application servers (where PMIS is running).
-  The application's log will be sent thanks to *Logspout* and *Filebeat* to the *ELK* stack server.
+  Same as above but for development purpose and it should run on the ELK server.
+
+- **docker-compose-cadvisor.yml**
+
+  Container memory manager. It should be available at port `5602`.
 
 ---
+
+## How to Use
+
+
+**Use the script `docker-auto.sh` to manage these services!**
+
+    $ ./docker-auto.sh --help
+
 
 > **ELK stack deployment**
 > 
@@ -46,18 +56,4 @@ This is a logging service composed by several microservices:
 >
 >       $ sudo sysctl -w vm.max_map_count=262144
 
-Start the service with the following command:
-
-    $ docker-compose up -d
-
-Stop with:
-
-    $ docker-compose down
-
-Update the services and run with:
-
-    $ docker-compose up -d --build
-
-## How to Use
-
-`Kibana` Web Interface is accessible through the port *5601*
+`Kibana` Web Interface is accessible through the port `5601`.

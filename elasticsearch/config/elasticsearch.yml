@@ -25,3 +25,5 @@ bootstrap.memory_lock: true
 
 http.cors.enabled: true
 http.cors.allow-origin: "*"
+
+indices.fielddata.cache.size: 20%
