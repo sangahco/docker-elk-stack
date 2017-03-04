@@ -13,6 +13,8 @@ RUN set -ex && \
     tar -xf pkg.tar.gz && \
     mkdir -p $LS_HOME && cp -a logstash-*/. $LS_HOME && \
     chown -R $DEFAULT_LS_USER: $LS_HOME && \
+    curl https://s3.ap-northeast-2.amazonaws.com/sangah-b1/x-pack-5.2.1.zip -o x-pack.zip && \
+    cd $LS_HOME && bin/logstash-plugin install file:///tmp/x-pack.zip && \
     sed -i -e 's/-Xms/#-Xms/' $LS_HOME/config/jvm.options && \
     sed -i -e 's/-Xmx/#-Xmx/' $LS_HOME/config/jvm.options && \
     rm -rf /tmp/*
