@@ -1,0 +1,2 @@
+<14>1 2017-03-04T01:46:53Z 89cd9c22f803 dev121hub_hub_1 24423 - - 203.239.21.69 - emawind84 [04/Mar/2017:01:46:53 +0000] "PROPFIND /owncloud/remote.php/webdav/etc HTTP/1.1" 207 8216 "-" "Mozilla/5.0 (Windows) mirall/1.8.4" "-" "dev.sangah.com" "dev.sangah.com" "443" "203.239.21.69"
+<14>1 2017-03-03T08:02:12Z b14b0836a80c nginxcertbot_certbot_1 21805 - -    To fix these errors, please make sure that your domain name was

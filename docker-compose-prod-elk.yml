@@ -7,7 +7,7 @@ services:
       file: common-services.yml
       service: elasticsearch
     volumes:
-    - esdata:/opt/elasticsearch/data
+    - ${ES_DATA_HOME}:/usr/share/elasticsearch/data
 
   logstash:
     image: ${REGISTRY_URL}/logstash
@@ -47,4 +47,3 @@ services:
 
 volumes:
   esdata:
-  fbdata:

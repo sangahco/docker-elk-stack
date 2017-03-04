@@ -9,16 +9,14 @@ services:
     extends: 
       file: common-services.yml
       service: elasticsearch
-    environment: 
-      - ES_JAVA_OPTS=-Xmx512m -Xms512m
 
   logstash:
     build: logstash
     extends: 
       file: common-services.yml
       service: logstash
-    environment: 
-      - LS_JAVA_OPTS=-Xmx512m -Xms512m
+    volumes: 
+    - ./logstash/pipeline:/usr/share/logstash/pipeline
 
   kibana:
     build: kibana

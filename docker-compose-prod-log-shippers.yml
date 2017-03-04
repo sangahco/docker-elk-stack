@@ -16,7 +16,7 @@ services:
       file: common-services.yml
       service: filebeat
     volumes: 
-    - fbdata:/data
+    - ${FB_DATA_HOME}:/data
     extra_hosts: 
     - "logstash:${LOGSTASH_HOST}"
 
