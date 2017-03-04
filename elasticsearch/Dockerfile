@@ -16,7 +16,7 @@ RUN set -ex && \
     mkdir $ES_HOME/data && \
     mkdir $ES_HOME/logs && \
     chown -R $DEFAULT_ES_USER: $ES_HOME && \
-    curl https://s3.ap-northeast-2.amazonaws.com/sangah-b1/x-pack-5.2.1.zip -o x-pack.zip && \
+    curl https://s3.ap-northeast-2.amazonaws.com/sangah-b1/x-pack-${ES_VERSION}.zip -o x-pack.zip && \
     cd $ES_HOME && bin/elasticsearch-plugin install --batch file:///tmp/x-pack.zip && \
     sed -i -e 's/-Xms/#-Xms/' $ES_HOME/config/jvm.options && \
     sed -i -e 's/-Xmx/#-Xmx/' $ES_HOME/config/jvm.options && \
