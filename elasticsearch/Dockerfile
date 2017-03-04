@@ -13,8 +13,9 @@ RUN set -ex && \
     tar -xf pkg.tar.gz && \
     mkdir -p $ES_HOME && cp -a elasticsearch-*/. $ES_HOME && \
     chown -R $DEFAULT_ES_USER: $ES_HOME/config && \
-    mkdir $ES_HOME/data && chown -R $DEFAULT_ES_USER: $ES_HOME/data && \
-    mkdir $ES_HOME/logs && chown -R $DEFAULT_ES_USER: $ES_HOME/logs && \
+    mkdir $ES_HOME/data && \
+    mkdir $ES_HOME/logs && \
+    chown -R $DEFAULT_ES_USER: $ES_HOME && \
     sed -i -e 's/-Xms/#-Xms/' $ES_HOME/config/jvm.options && \
     sed -i -e 's/-Xmx/#-Xmx/' $ES_HOME/config/jvm.options && \
     rm -rf /tmp/*
