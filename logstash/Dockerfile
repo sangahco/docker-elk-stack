@@ -28,4 +28,4 @@ WORKDIR $LS_HOME
 
 EXPOSE 5000 5043
 
-CMD ["logstash", "-f", "/usr/share/logstash/pipeline/"]
+CMD ["logstash", "-f", "pipeline"]
