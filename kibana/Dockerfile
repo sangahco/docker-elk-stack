@@ -3,7 +3,8 @@ MAINTAINER Emanuele Disco <emanuele.disco@gmail.com>
 
 ENV KB_HOME=/opt/kibana \
     DEFAULT_KB_USER=kibana \
-    KIBANA_VERSION=5.2.1
+    KIBANA_VERSION=5.2.1 \
+    NODE_TLS_REJECT_UNAUTHORIZED=0
 
 RUN set -ex && \
     useradd -ms /bin/bash $DEFAULT_KB_USER && \
@@ -11,9 +12,9 @@ RUN set -ex && \
     curl https://s3.ap-northeast-2.amazonaws.com/sangah-b1/kibana-${KIBANA_VERSION}-linux-x86_64.tar.gz -o pkg.tar.gz && \
     tar -xf pkg.tar.gz && \
     mkdir -p $KB_HOME && cp -a kibana-*/. $KB_HOME && \
-    chown -R $DEFAULT_KB_USER: $KB_HOME && \
     #curl https://s3.ap-northeast-2.amazonaws.com/sangah-b1/x-pack-${KIBANA_VERSION}.zip -o x-pack.zip && \
     #cd $KB_HOME && bin/kibana-plugin install file:///tmp/x-pack.zip && \
+    chown -R $DEFAULT_KB_USER: $KB_HOME && \
     rm -rf /tmp/*
 
 COPY ./kibana.yml $KB_HOME/config/

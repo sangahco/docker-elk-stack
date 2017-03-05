@@ -5,6 +5,8 @@ services:
     container_name: elasticsearch-srv
     environment: 
       - ES_JAVA_OPTS
+      - ES_USER
+      - ES_PASSWORD
     ulimits:
       memlock:
         soft: -1
@@ -18,11 +20,15 @@ services:
     environment: 
       - LOGSPOUT=ignore
       - LS_JAVA_OPTS
+      - ES_USER
+      - ES_PASSWORD
 
   kibana:
     container_name: kibana-srv
     environment: 
       - LOGSPOUT=ignore
+      - ES_USER
+      - ES_PASSWORD
 
   logspout:
     container_name: "datashipper-logspout"

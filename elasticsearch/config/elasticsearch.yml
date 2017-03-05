@@ -28,6 +28,17 @@ http.cors.allow-origin: "*"
 
 indices.fielddata.cache.size: 20%
 
-xpack.ssl.key:                     /usr/share/elasticsearch/config/x-pack/node01.key
-xpack.ssl.certificate:             /usr/share/elasticsearch/config/x-pack/node01.crt
-xpack.ssl.certificate_authorities: [ "/usr/share/elasticsearch/config/x-pack/ca.crt" ]
+xpack.ssl.key:                     ${ES_HOME}/config/ssl/node1.key
+xpack.ssl.certificate:             ${ES_HOME}/config/ssl/node1.crt
+xpack.ssl.certificate_authorities: [ "/usr/share/elasticsearch/config/ssl/ca.crt" ]
+
+# enable tls/ssl connection
+xpack.security.transport.ssl.enabled: true
+xpack.security.http.ssl.enabled: true
+
+# disable ca verification
+xpack.ssl.verification_mode: none
+xpack.ssl.client_authentication: none
+
+xpack.security.audit.enabled: true
+xpack.security.audit.outputs: [ index ]
