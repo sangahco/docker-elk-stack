@@ -12,12 +12,14 @@ RUN set -ex && \
     curl https://s3.ap-northeast-2.amazonaws.com/sangah-b1/elasticsearch-${ES_VERSION}.tar.gz -o pkg.tar.gz && \
     tar -xf pkg.tar.gz && \
     mkdir -p $ES_HOME && cp -a elasticsearch-*/. $ES_HOME && \
-    chown -R $DEFAULT_ES_USER: $ES_HOME/config && \
     mkdir $ES_HOME/data && \
     mkdir $ES_HOME/logs && \
     chown -R $DEFAULT_ES_USER: $ES_HOME && \
     curl https://s3.ap-northeast-2.amazonaws.com/sangah-b1/x-pack-${ES_VERSION}.zip -o x-pack.zip && \
-    cd $ES_HOME && bin/elasticsearch-plugin install --batch file:///tmp/x-pack.zip && \
+    cd $ES_HOME && \
+    bin/elasticsearch-plugin install --batch file:///tmp/x-pack.zip && \
+    cat 'instances: [ \'name\': \'node1\' ]' > $ES_HOME/config/instances.yml && \
+    bin/x-pack/certgen -in instances.yml && \
     sed -i -e 's/-Xms/#-Xms/' $ES_HOME/config/jvm.options && \
     sed -i -e 's/-Xmx/#-Xmx/' $ES_HOME/config/jvm.options && \
     rm -rf /tmp/*
