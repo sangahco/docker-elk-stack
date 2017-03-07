@@ -2,7 +2,7 @@ version: "2"
 
 services:
   elasticsearch:
-    image: ${REGISTRY_URL}/elasticsearch
+    image: ${REGISTRY_URL}/elasticsearch:0.1
     extends: 
       file: common-services.yml
       service: elasticsearch
@@ -10,7 +10,7 @@ services:
     - ${ES_DATA_HOME}:/usr/share/elasticsearch/data
 
   logstash:
-    image: ${REGISTRY_URL}/logstash
+    image: ${REGISTRY_URL}/logstash:0.1
     extends: 
       file: common-services.yml
       service: logstash
@@ -20,7 +20,7 @@ services:
     - 5043:5043
 
   kibana:
-    image: ${REGISTRY_URL}/kibana
+    image: ${REGISTRY_URL}/kibana:0.1
     extends: 
       file: common-services.yml
       service: kibana
