@@ -24,23 +24,7 @@ services:
     environment: 
       - LOGSPOUT=ignore
 
-  logspout:
-    container_name: "datashipper-logspout"
-    image: gliderlabs/logspout
-    environment:
-      - DEBUG=true
-      - LOGSPOUT=ignore
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
-
   nginx:
-    environment: 
-      - LOGSPOUT=ignore
-
-  filebeat:
-    container_name: "datashipper-filebeat"
-    volumes:
-      - ${LOG_PATH}:/usr/local/log
     environment: 
       - LOGSPOUT=ignore
 

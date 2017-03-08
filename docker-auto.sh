@@ -16,8 +16,6 @@ echo
 echo "Mode:"
 echo "  --elk-prod      ELK Stack for production"
 echo "  --elk-dev       ELK Stack for development"
-echo "  --log-prod      Log shippers for production"
-echo "  --log-dev       Log shippers for development"
 echo
 echo "Options:"
 echo "  --with-cadv     Add CAdvisor service"
@@ -48,14 +46,6 @@ case $i in
         ;;
     --elk-dev)
         CONF_ARG="-f docker-compose-dev-elk.yml"
-        shift
-        ;;
-    --log-prod)
-        CONF_ARG="-f docker-compose-prod-log-shippers.yml"
-        shift
-        ;;
-    --log-dev)
-        CONF_ARG="$CONF_ARG -f docker-compose-dev-log-shippers.yml"
         shift
         ;;
     --with-cadv)
