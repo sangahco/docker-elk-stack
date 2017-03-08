@@ -8,7 +8,9 @@ services:
       service: logspout
     depends_on: 
     - logstash
-    command: syslog://logstash:5000
+    extra_hosts: 
+    - "logstash:${LOGSTASH_HOST}"
+    command: syslog://${LOGSTASH_HOST}:5000
     #network_mode: "service:logstash"
 
   filebeat:
@@ -18,7 +20,8 @@ services:
       service: filebeat
     volumes: 
       - fbdata:/data
+    extra_hosts: 
+    - "logstash:${LOGSTASH_HOST}"
 
 volumes:
-  esdata:
   fbdata:

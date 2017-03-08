@@ -5,7 +5,7 @@ services:
   elasticsearch:
     build: elasticsearch
     volumes:
-      - esdata:/opt/elasticsearch/data
+      - esdata:/usr/share/elasticsearch/data
     extends: 
       file: common-services.yml
       service: elasticsearch
