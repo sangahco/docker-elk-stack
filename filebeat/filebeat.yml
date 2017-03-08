@@ -6,7 +6,7 @@ filebeat.prospectors:
   paths: ["/usr/local/log/*.log", "/usr/local/log/*/*.log"]
   ignore_older: "5m"
 
-  multiline.pattern: '^[[:space:]]+|^Caused by:'
+  multiline.pattern: '^[[:space:]]+|^Caused by:|^---[[:space:]]'
   multiline.negate: false
   multiline.match: after
 

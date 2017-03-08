@@ -55,7 +55,7 @@ case $i in
         shift
         ;;
     --log-dev)
-        CONF_ARG="-f docker-compose-dev-log-shippers.yml"
+        CONF_ARG="-f docker-compose-dev-elk.yml -f docker-compose-dev-log-shippers.yml"
         shift
         ;;
     --with-cadv)
@@ -67,6 +67,7 @@ case $i in
         exit 1
         ;;
     *)
+        break
         ;;
 esac
 done
