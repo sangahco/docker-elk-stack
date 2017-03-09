@@ -50,6 +50,18 @@ If they are missing, follow the instructions on the official website (they are n
 
     $ ./docker-auto.sh --help
 
+Run in production with:
+
+    $ ./docker-auto.sh --elk-prod up
+
+Observe the log with:
+
+    $ ./docker-auto.sh --elk-prod logs
+
+Shutdown the service with:
+
+    $ ./docker-auto.sh --elk-prod down
+
 
 > **ELK stack deployment**
 > 
