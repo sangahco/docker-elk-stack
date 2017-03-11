@@ -11,7 +11,8 @@ events {
 
 http {
     resolver $NAMESERVERS valid=30s;
-
+    resolver_timeout 5s;
+    
     include       /etc/nginx/mime.types;
     default_type  application/octet-stream;
 
@@ -54,4 +55,9 @@ http {
 
 }
 
-include /usr/share/nginx/stream/*.conf;
+stream {
+    resolver $NAMESERVERS valid=30s;
+    resolver_timeout 5s;
+
+    include /usr/share/nginx/stream/*.conf;
+}

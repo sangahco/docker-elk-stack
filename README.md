@@ -50,6 +50,18 @@ If they are missing, follow the instructions on the official website (they are n
 
     $ ./docker-auto.sh --help
 
+Run in production with:
+
+    $ ./docker-auto.sh --elk-prod up
+
+Observe the log with:
+
+    $ ./docker-auto.sh --elk-prod logs
+
+Shutdown the service with:
+
+    $ ./docker-auto.sh --elk-prod down
+
 
 > **ELK stack deployment**
 > 
@@ -59,3 +71,19 @@ If they are missing, follow the instructions on the official website (they are n
 >       $ sudo sysctl -w vm.max_map_count=262144
 
 `Kibana` Web Interface is accessible through the port `5601`.
+
+
+## Settings Up the Environment
+
+The following settings are available:
+
+| Variable     | Description                                                                                | Default           |
+|--------------|--------------------------------------------------------------------------------------------|-------------------|
+| REGISTRY_URL | This is the docker registry host where to publish the images                               |                   |
+| ES_JAVA_OPTS | Elasticsearch Java options                                                                 | -Xmx256m -Xms256m |
+| LS_JAVA_OPTS | Logstash Java options                                                                      | -Xmx256m -Xms256m |
+| ES_DATA_HOME | Elasticsearch data home directory, it should be changed in production to a local directory | esdata            |
+| ES_USER      | Elasticsearch user to use with `x-pack` and security enabled                               |                   |
+| ES_PASSWORD  | Elasticsearch user password to use with `x-pack` and security enabled                      |                   |
+
+(\*) *table generated with [tablesgenerator](http://www.tablesgenerator.com/markdown_tables)*

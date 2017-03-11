@@ -14,8 +14,8 @@ usage() {
 echo "Usage:  $(basename "$0") [MODE] [OPTIONS] [COMMAND]"
 echo 
 echo "Mode:"
-echo "  --elk-prod      ELK Stack for production"
-echo "  --elk-dev       ELK Stack for development"
+echo "  --prod      ELK Stack for production"
+echo "  --dev       ELK Stack for development"
 echo
 echo "Options:"
 echo "  --with-cadv     Add CAdvisor service"
@@ -40,11 +40,11 @@ fi
 for i in "$@"
 do
 case $i in
-    --elk-prod)
+    --prod)
         CONF_ARG="-f docker-compose-prod-elk.yml"
         shift
         ;;
-    --elk-dev)
+    --dev)
         CONF_ARG="-f docker-compose-dev-elk.yml"
         shift
         ;;
