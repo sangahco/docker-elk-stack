@@ -18,7 +18,7 @@ services:
     environment: 
       - LOGSPOUT=ignore
       - LS_JAVA_OPTS
-      - ES_USER=logstash_system
+      - ES_USER=elastic
       - ES_PASSWORD
 
   kibana:
