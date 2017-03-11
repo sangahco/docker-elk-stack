@@ -5,8 +5,6 @@ services:
     container_name: elasticsearch-srv
     environment: 
       - ES_JAVA_OPTS
-      - ES_USER
-      - ES_PASSWORD
     ulimits:
       memlock:
         soft: -1
@@ -27,8 +25,8 @@ services:
     container_name: kibana-srv
     environment: 
       - LOGSPOUT=ignore
-      - ES_USER
-      - ES_PASSWORD
+      - ELASTICSEARCH_USERNAME=${ES_USER}
+      - ELASTICSEARCH_PASSWORD=${ES_PASSWORD}
 
   nginx:
     environment: 
