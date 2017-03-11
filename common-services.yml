@@ -18,15 +18,15 @@ services:
     environment: 
       - LOGSPOUT=ignore
       - LS_JAVA_OPTS
-      - ES_USER
+      - ES_USER=logstash_system
       - ES_PASSWORD
 
   kibana:
     container_name: kibana-srv
     environment: 
       - LOGSPOUT=ignore
-      - ELASTICSEARCH_USERNAME=${ES_USER}
-      - ELASTICSEARCH_PASSWORD=${ES_PASSWORD}
+      - ES_USER=kibana
+      - ES_PASSWORD
 
   nginx:
     environment: 
