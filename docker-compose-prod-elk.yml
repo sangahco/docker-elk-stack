@@ -2,7 +2,7 @@ version: "2"
 
 services:
   elasticsearch:
-    image: ${REGISTRY_URL}/elasticsearch:0.1-xpack
+    image: ${REGISTRY_URL}/elasticsearch:${IMAGE_TAG}
     extends: 
       file: common-services.yml
       service: elasticsearch
@@ -11,14 +11,14 @@ services:
     restart: "on-failure"
 
   logstash:
-    image: ${REGISTRY_URL}/logstash:0.1-xpack
+    image: ${REGISTRY_URL}/logstash:${IMAGE_TAG}
     extends: 
       file: common-services.yml
       service: logstash
     restart: "on-failure"
 
   kibana:
-    image: ${REGISTRY_URL}/kibana:0.1-xpack
+    image: ${REGISTRY_URL}/kibana:${IMAGE_TAG}
     extends: 
       file: common-services.yml
       service: kibana
