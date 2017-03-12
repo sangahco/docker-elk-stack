@@ -18,14 +18,14 @@ services:
     environment: 
       - LOGSPOUT=ignore
       - LS_JAVA_OPTS
-      - ES_USER=elastic
+      - ES_USER
       - ES_PASSWORD
 
   kibana:
     container_name: kibana-srv
     environment: 
       - LOGSPOUT=ignore
-      - ES_USER=kibana
+      - ES_USER
       - ES_PASSWORD
 
   nginx:
