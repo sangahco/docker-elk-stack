@@ -62,6 +62,10 @@ Shutdown the service with:
 
     $ ./docker-auto.sh --elk-prod down
 
+Monitor the services:
+
+    $ ./docker-auto.sh --elk-prod ps
+
 
 > **ELK stack deployment**
 > 
