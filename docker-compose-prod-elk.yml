@@ -8,21 +8,21 @@ services:
       service: elasticsearch
     volumes:
     - ${ES_DATA_HOME}:/usr/share/elasticsearch/data
-    restart: "on-failure"
+    restart: "unless-stopped"
 
   logstash:
     image: ${REGISTRY_URL}/logstash:${IMAGE_TAG}
     extends: 
       file: common-services.yml
       service: logstash
-    restart: "on-failure"
+    restart: "unless-stopped"
 
   kibana:
     image: ${REGISTRY_URL}/kibana:${IMAGE_TAG}
     extends: 
       file: common-services.yml
       service: kibana
-    restart: "on-failure"
+    restart: "unless-stopped"
 
   nginx:
     image: ${REGISTRY_URL}/nginx-elk
@@ -39,7 +39,7 @@ services:
     - 5000:5000     # logstash syslog/tcp
     - 5000:5000/udp # logstash syslog/udp
     - 5043:5043     # logstash beats
-    restart: "on-failure"
+    restart: "unless-stopped"
 
 #   headplug:
 #     extends: 

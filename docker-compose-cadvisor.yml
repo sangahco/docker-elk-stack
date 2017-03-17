@@ -8,3 +8,4 @@ services:
       service: cadvisor
     ports:
     - "5602:8080"
+    restart: "unless-stopped"
