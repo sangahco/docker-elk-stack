@@ -1,1 +1,3 @@
 FROM dev.sangah.com:5043/nginx-base
+
+EXPOSE 9200 9300 5000 5000/udp 5043 80 443 5601

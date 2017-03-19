@@ -4,19 +4,19 @@ services:
 
   elasticsearch:
     build: elasticsearch
-    volumes:
-      - esdata:/usr/share/elasticsearch/data
     extends: 
       file: common-services.yml
       service: elasticsearch
+    volumes:
+      - esdata:/usr/share/elasticsearch/data
 
   logstash:
     build: logstash
     extends: 
       file: common-services.yml
       service: logstash
-    volumes: 
-    - ./logstash/pipeline:/usr/share/logstash/pipeline
+    # volumes: 
+    # - ./logstash/pipeline:/usr/share/logstash/pipeline
 
   kibana:
     build: kibana
@@ -36,6 +36,7 @@ services:
     ports:
     - 5601:5601     # kibana
     - 9200:9200     # elasticsearch
+    - 9300:9300     # elasticsearch
     - 5000:5000     # logstash syslog/tcp
     - 5000:5000/udp # logstash syslog/udp
     - 5043:5043     # logstash beats

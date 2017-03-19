@@ -28,7 +28,7 @@ RUN set -ex && \
     sed -i -e 's/-Xmx/#-Xmx/' $ES_HOME/config/jvm.options && \
     rm -rf /tmp/*
 
-COPY ./config/elasticsearch.yml $ES_HOME/config/
+COPY ./config $ES_HOME/config
 
 HEALTHCHECK --interval=60s CMD curl -u ${ES_USER}:${ES_PASSWORD} --fail --insecure https://localhost:9200/_cat/health || exit 1
 
