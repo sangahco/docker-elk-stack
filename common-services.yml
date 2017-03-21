@@ -12,26 +12,36 @@ services:
       nofile:
         soft: 65536
         hard: 65536
+    extends:
+      service: logging
 
   logstash:
     container_name: logstash-srv
     environment: 
       - LOGSPOUT=ignore
       - LS_JAVA_OPTS
+    extends:
+      service: logging
 
   kibana:
     container_name: kibana-srv
     environment: 
       - LOGSPOUT=ignore
+    extends:
+      service: logging
 
   nginx:
     environment: 
       - LOGSPOUT=ignore
+    extends:
+      service: logging
 
   headplug:
     image: mobz/elasticsearch-head:5
     environment: 
       - LOGSPOUT=ignore
+    extends:
+      service: logging
 
   cadvisor:
     image: google/cadvisor:latest
@@ -42,3 +52,12 @@ services:
       - /var/lib/docker/:/var/lib/docker:ro
     environment: 
       - LOGSPOUT=ignore
+    extends:
+      service: logging
+
+  logging:
+    logging: 
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "5"
