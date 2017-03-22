@@ -13,6 +13,20 @@ analyze them, make cool charts, and it is a start point for future development a
 - **ES Head Plugin** - For managing Elasticsearch engine data
 - **Cadvisor** - Monitoring service for Docker containers
 
+## Security Notice!
+
+This Docker image include the X-Pack extension that add authentication agains Elasticsearch engine
+and provide secured connection between *Elasticsearch*, *Kibana* and *Logstash*.
+
+The *security* module is the only active module,
+*monitoring*, *graph*, *watcher* and *reporting* have been disabled 
+(they can be used for free only for a small period).
+
+Please keep in mind that it is really important to change the password of the elk users (default is `changeme`),
+refer to [this](https://www.elastic.co/guide/en/x-pack/current/installing-xpack.html) 
+and [this](https://www.elastic.co/guide/en/x-pack/current/security-getting-started.html) link 
+for getting started with x-pack.
+
 
 ## Configurations available:
 

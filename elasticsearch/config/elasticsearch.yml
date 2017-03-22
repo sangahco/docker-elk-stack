@@ -36,3 +36,7 @@ xpack.ssl.client_authentication: none
 
 xpack.security.audit.enabled: true
 xpack.security.audit.outputs: [ index ]
+
+xpack.monitoring.enabled: false
+xpack.graph.enabled: false
+xpack.watcher.enabled: false
