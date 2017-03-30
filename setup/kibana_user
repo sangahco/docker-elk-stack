@@ -1,0 +1,17 @@
+POST /_xpack/security/role/kibana_reader
+{
+  "indices" : [
+    {
+      "names" : [ "*" ],
+      "privileges" : [ "read","view_index_metadata" ]
+    }
+  ]
+}
+
+POST /_xpack/security/user/<username>
+{
+  "password" : "changeme",
+  "full_name" : "<full name>",
+  "email" : "<user email>",
+  "roles" : [ "kibana_reader" ]
+}
