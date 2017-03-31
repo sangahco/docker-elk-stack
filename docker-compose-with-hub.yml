@@ -1,0 +1,14 @@
+version: "2"
+
+services:
+  
+  nginx:
+    networks: 
+      default:
+      hub_net:
+        aliases: 
+        - kibana
+
+networks: 
+  hub_net:
+    external: true
