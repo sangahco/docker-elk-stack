@@ -27,6 +27,7 @@ echo "  --dev       ELK Stack for development"
 echo
 echo "Options:"
 echo "  --with-cadv     Add CAdvisor service"
+echo "  --with-hub      Add encrypted connection for Kibana, hub required"
 echo
 echo "Commands:"
 echo "  up              Start the services"
@@ -58,6 +59,10 @@ case $i in
         ;;
     --with-cadv)
         CONF_ARG="$CONF_ARG -f docker-compose-cadvisor.yml"
+        shift
+        ;;
+    --with-hub)
+        CONF_ARG="$CONF_ARG -f docker-compose-with-hub.yml"
         shift
         ;;
     --help|-h)
