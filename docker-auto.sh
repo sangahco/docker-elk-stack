@@ -34,6 +34,7 @@ echo "  up              Start the services"
 echo "  down            Stop the services"
 echo "  ps              Show the status of the services"
 echo "  logs            Follow the logs on console"
+echo "  login           Log in to a Docker registry"
 echo "  remove-all      Remove all containers"
 echo "  stop-all        Stop all containers running"
 echo
@@ -78,7 +79,11 @@ done
 echo "Arguments: $CONF_ARG"
 echo "Command: $@"
 
-if [ "$1" == "up" ]; then
+if [ "$1" == "login" ]; then
+    docker login $REGISTRY_URL
+    exit 0
+
+elif [ "$1" == "up" ]; then
     docker-compose $CONF_ARG pull
     docker-compose $CONF_ARG build --pull
     docker-compose $CONF_ARG up -d --remove-orphans
