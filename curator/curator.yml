@@ -3,12 +3,12 @@ client:
     - ${ES_HOST:127.0.0.1}
   port: ${ES_PORT:9200}
   url_prefix:
-  use_ssl: ${USE_SSL}
+  use_ssl: ${CLIENT_USE_SSL}
   certificate:
   client_cert:
   client_key:
-  ssl_no_validate: ${SSL_NO_VALIDATE}
-  http_auth: ${HTTP_AUTH}
+  ssl_no_validate: ${CLIENT_SSL_NO_VALIDATE}
+  http_auth: ${CLIENT_HTTP_AUTH}
   timeout: 300
   master_only: False
 
