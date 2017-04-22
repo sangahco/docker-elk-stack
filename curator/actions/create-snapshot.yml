@@ -1,0 +1,10 @@
+actions:
+  1:
+    action: snapshot
+    description: Create a snapshot on raspi
+    options:
+      repository: raspi-backup
+      name:
+      wait_for_completion: True
+      max_wait: 3600
+      wait_interval: 10

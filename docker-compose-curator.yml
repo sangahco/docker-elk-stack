@@ -9,6 +9,6 @@ services:
     environment: 
     - ES_HOST
     - ES_PORT
-    - HTTP_AUTH=${ES_USER}:${ES_PASSWORD}
+    - USE_SSL=False
     depends_on: 
     - elasticsearch
