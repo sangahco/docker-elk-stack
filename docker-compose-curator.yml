@@ -9,9 +9,9 @@ services:
     environment: 
     - ES_HOST
     - ES_PORT
-    - CLIENT_HTTP_AUTH
-    - CLIENT_USE_SSL=False
-    - CLIENT_SSL_NO_VALIDATE
-    - SNAPSHOT_REPOSITORY
+    - CLIENT_HTTP_AUTH=${ES_USER}:${ES_PASSWORD}
+    - CLIENT_USE_SSL=True
+    - CLIENT_SSL_NO_VALIDATE=True
+    - SNAPSHOT_REPOSITORY=local
     depends_on: 
     - elasticsearch
