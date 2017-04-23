@@ -11,5 +11,9 @@ RUN set -ex && \
 
 COPY ./curator.yml /root/.curator/
 WORKDIR $CURATOR_HOME
-ENTRYPOINT ["curator"]
+#ENTRYPOINT ["curator"]
 CMD ["--help"]
+
+COPY ./docker-entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
+ENTRYPOINT ["/entrypoint.sh"]
