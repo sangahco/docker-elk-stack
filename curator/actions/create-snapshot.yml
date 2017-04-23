@@ -1,0 +1,12 @@
+actions:
+  1:
+    action: snapshot
+    description: Create a snapshot
+    options:
+      repository: ${SNAPSHOT_REPOSITORY}
+      name:
+      wait_for_completion: True
+      max_wait: 3600
+      wait_interval: 10
+    filters:
+    - filtertype: none

@@ -1,0 +1,17 @@
+version: "2"
+
+services: 
+  curator:
+    build: curator
+    network_mode: "service:elasticsearch"
+    volumes: 
+    - ./curator/actions:/usr/share/curator
+    environment: 
+    - ES_HOST
+    - ES_PORT
+    - CLIENT_HTTP_AUTH
+    - CLIENT_USE_SSL=False
+    - CLIENT_SSL_NO_VALIDATE
+    - SNAPSHOT_REPOSITORY
+    depends_on: 
+    - elasticsearch
