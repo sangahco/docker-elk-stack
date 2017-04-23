@@ -103,6 +103,15 @@ elif [ "$1" == "logs" ]; then
     shift
     docker-compose $CONF_ARG logs -f --tail 200 "$@"
     exit 0
+
+elif [ "$1" == "backup" ]; then
+    docker-compose $CONF_ARG -f docker-compose-curator.yml run curator create-snapshot.yml
+    exit 0
+
+elif [ "$1" == "delete-old" ]; then
+    docker-compose $CONF_ARG -f docker-compose-curator.yml run curator delete-old-indices.yml
+    exit 0
+
 fi
 
 docker-compose $CONF_ARG "$@"
