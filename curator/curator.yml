@@ -1,14 +1,14 @@
 client:
   hosts:
-    - ${ES_HOST:127.0.0.1}
+  - ${ES_HOST:127.0.0.1}
   port: ${ES_PORT:9200}
   url_prefix:
-  use_ssl: ${CLIENT_USE_SSL}
-  certificate:
+  use_ssl: ${CURATOR_USE_SSL:False}
+  certificate: ${CURATOR_CA_CERTIFICATE}
   client_cert:
   client_key:
-  ssl_no_validate: ${CLIENT_SSL_NO_VALIDATE}
-  http_auth: ${CLIENT_HTTP_AUTH}
+  ssl_no_validate: ${CURATOR_SSL_NO_VALIDATE:False}
+  http_auth: ${CURATOR_HTTP_AUTH}
   timeout: 300
   master_only: False
 

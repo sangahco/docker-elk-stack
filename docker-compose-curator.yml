@@ -7,8 +7,6 @@ services:
     volumes: 
     - ./curator/actions:/usr/share/curator
     environment: 
-    - ES_HOST
-    - ES_PORT
     - CLIENT_HTTP_AUTH=${ES_USER}:${ES_PASSWORD}
     - CLIENT_USE_SSL=True
     - CLIENT_SSL_NO_VALIDATE=True
