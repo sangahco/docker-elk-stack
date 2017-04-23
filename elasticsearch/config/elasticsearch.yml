@@ -1,5 +1,5 @@
 cluster.name: elk-cluster
-node.name: node1
+node.name: ${HOSTNAME}
 
 network.host: 0.0.0.0
 #network.publish_host: _eth0_
@@ -21,3 +21,5 @@ http.cors.enabled: true
 http.cors.allow-origin: "*"
 
 indices.fielddata.cache.size: 20%
+
+path.repo: ["/usr/share/elasticsearch/backups"]

@@ -4,7 +4,8 @@ services:
   elasticsearch:
     container_name: elasticsearch-srv
     environment: 
-      - ES_JAVA_OPTS
+    - ES_JAVA_OPTS
+    - ES_PATH_REPO
     ulimits:
       memlock:
         soft: -1
@@ -18,40 +19,40 @@ services:
   logstash:
     container_name: logstash-srv
     environment: 
-      - LOGSPOUT=ignore
-      - LS_JAVA_OPTS
+    - LOGSPOUT=ignore
+    - LS_JAVA_OPTS
     extends:
       service: logging
 
   kibana:
     container_name: kibana-srv
     environment: 
-      - LOGSPOUT=ignore
+    - LOGSPOUT=ignore
     extends:
       service: logging
 
   nginx:
     environment: 
-      - LOGSPOUT=ignore
+    - LOGSPOUT=ignore
     extends:
       service: logging
 
   headplug:
     image: mobz/elasticsearch-head:5
     environment: 
-      - LOGSPOUT=ignore
+    - LOGSPOUT=ignore
     extends:
       service: logging
 
   cadvisor:
     image: google/cadvisor:latest
     volumes:
-      - /:/rootfs:ro
-      - /var/run:/var/run:rw
-      - /sys:/sys:ro
-      - /var/lib/docker/:/var/lib/docker:ro
+    - /:/rootfs:ro
+    - /var/run:/var/run:rw
+    - /sys:/sys:ro
+    - /var/lib/docker/:/var/lib/docker:ro
     environment: 
-      - LOGSPOUT=ignore
+    - LOGSPOUT=ignore
     extends:
       service: logging
 
