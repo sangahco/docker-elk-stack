@@ -8,6 +8,7 @@ services:
       service: elasticsearch
     volumes:
     - ${ES_DATA_HOME}:/usr/share/elasticsearch/data
+    - ${ES_BACKUP_HOME}:/usr/share/elasticsearch/backups
     restart: "unless-stopped"
 
   logstash:
@@ -51,3 +52,4 @@ services:
 
 volumes:
   esdata:
+  esbackup:
