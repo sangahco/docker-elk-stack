@@ -12,6 +12,8 @@ services:
       nofile:
         soft: 65536
         hard: 65536
+    cap_add:
+    - IPC_LOCK
     extends:
       service: logging
 
