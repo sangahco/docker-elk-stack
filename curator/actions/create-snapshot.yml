@@ -3,7 +3,7 @@ actions:
     action: snapshot
     description: Create a snapshot
     options:
-      repository: ${SNAPSHOT_REPOSITORY}
+      repository: ${SNAPSHOT_REPOSITORY:backups}
       name:
       wait_for_completion: True
       max_wait: 3600
