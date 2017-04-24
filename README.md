@@ -81,13 +81,17 @@ Monitor the services:
 
 The following settings are available:
 
-| Variable     | Description                                                                                | Default           |
-|--------------|--------------------------------------------------------------------------------------------|-------------------|
-| REGISTRY_URL | This is the docker registry host where to publish the images                               |                   |
-| ES_JAVA_OPTS | Elasticsearch Java options                                                                 | -Xmx256m -Xms256m |
-| LS_JAVA_OPTS | Logstash Java options                                                                      | -Xmx256m -Xms256m |
-| ES_DATA_HOME | Elasticsearch data home directory, it should be changed in production to a local directory | esdata            |
-| ES_USER      | Elasticsearch user to use with `x-pack` and security enabled                               |                   |
-| ES_PASSWORD  | Elasticsearch user password to use with `x-pack` and security enabled                      |                   |
+| Variable         | Description                                                                                                                                                                                                                                                                  | Default           |
+|------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------------|
+| REGISTRY_URL     | This is the docker registry host where to publish the images                                                                                                                                                                                                                 |                   |
+| IMAGE_TAG        | This is the docker image tag, at the moment there are two version: `5.2` and `5.2-xpack`                                                                                                                                                                                     |                   |
+| ES_JAVA_OPTS     | Elasticsearch Java options                                                                                                                                                                                                                                                   | -Xmx256m -Xms256m |
+| LS_JAVA_OPTS     | Logstash Java options                                                                                                                                                                                                                                                        | -Xmx256m -Xms256m |
+| ES_DATA_HOME     | Elasticsearch data home directory, it should be changed in production to a local directory                                                                                                                                                                                   | esdata            |
+| ES_BACKUP_HOME   | This is the folder that should be registered as snapshot repository for Elasticsearch data backup. To create a repository on Elasticsearch see [here](https://www.elastic.co/guide/en/elasticsearch/reference/current/modules-snapshots.html#_shared_file_system_repository) |                   |
+| ES_USER          | Elasticsearch user to use with `x-pack` and security enabled                                                                                                                                                                                                                 |                   |
+| ES_PASSWORD      | Elasticsearch user password to use with `x-pack` and security enabled                                                                                                                                                                                                        |                   |
+| ES_HTPASSWD_PATH |  File Path to the file htpasswd for Basic Authentication. Because X-Pack Basic license doesn't provide authentication we have to add basic authentication to Nginx                                                                                                           |                   |
+
 
 (\*) *table generated with [tablesgenerator](http://www.tablesgenerator.com/markdown_tables)*
