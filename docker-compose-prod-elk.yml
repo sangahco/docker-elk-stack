@@ -30,6 +30,8 @@ services:
     extends: 
       file: common-services.yml
       service: nginx
+    volumes: 
+    - ${ES_HTPASSWD_PATH}:/usr/share/nginx/conf.d/.htpasswd
     depends_on: 
     - kibana
     - elasticsearch
