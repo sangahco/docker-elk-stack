@@ -1,0 +1,4 @@
+
+# leave the new line
+xpack.monitoring.elasticsearch.username: ${ES_USERNAME}
+xpack.monitoring.elasticsearch.password: ${ES_PASSWORD}

@@ -7,6 +7,12 @@ ENV LS_VERSION=5.2.1 \
     LS_JAVA_OPTS="-Xmx256m -Xms256m"
 
 RUN set -ex && \
+    apt-get update && apt-get -y install \
+      gettext-base && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
+
+RUN set -ex && \
     useradd -ms /bin/bash $DEFAULT_LS_USER && \
     cd /tmp && \
     curl https://s3.ap-northeast-2.amazonaws.com/sangah-b1/logstash-${LS_VERSION}.tar.gz -o /tmp/pkg.tar.gz && \
@@ -22,10 +28,13 @@ RUN set -ex && \
 ADD pipeline/ $LS_HOME/pipeline/
 ADD config/ $LS_HOME/config/
 
+COPY ./docker-entrypoint.sh /entrypoint.sh
+RUN chmod a+x /entrypoint.sh
+
 ENV PATH $LS_HOME/bin:$PATH
 USER $DEFAULT_LS_USER
 WORKDIR $LS_HOME
 
 EXPOSE 5000 5000/udp 5043
 
-CMD ["logstash", "-f", "pipeline"]
+ENTRYPOINT ["/entrypoint.sh"]

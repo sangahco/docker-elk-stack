@@ -29,7 +29,7 @@ RUN chown -R $DEFAULT_KB_USER: $KB_HOME
 
 ENV PATH $KB_HOME/bin:$PATH
 
-COPY ./docker-entrypoint.sh ./entrypoint.sh
+COPY ./docker-entrypoint.sh /entrypoint.sh
 RUN chmod a+x /entrypoint.sh
 
 EXPOSE 5601
