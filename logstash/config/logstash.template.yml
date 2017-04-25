@@ -1,0 +1,13 @@
+# leave the new line
+# https://www.elastic.co/guide/en/logstash/current/logstash-settings-file.html
+
+http.host: "0.0.0.0"
+
+config.reload.automatic: true
+#log.level: debug
+
+xpack.monitoring.enabled: false
+xpack.monitoring.elasticsearch.ssl.ca:
+xpack.monitoring.elasticsearch.url: ${ES_HOST}
+xpack.monitoring.elasticsearch.username: ${ES_USERNAME}
+xpack.monitoring.elasticsearch.password: ${ES_PASSWORD}
