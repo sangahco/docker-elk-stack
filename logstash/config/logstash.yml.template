@@ -1,4 +1,5 @@
 
 # leave the new line
+xpack.monitoring.elasticsearch.url: ${ES_HOST}
 xpack.monitoring.elasticsearch.username: ${ES_USERNAME}
 xpack.monitoring.elasticsearch.password: ${ES_PASSWORD}
