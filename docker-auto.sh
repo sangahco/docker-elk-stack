@@ -3,7 +3,7 @@
 set -e
 
 DOCKER_COMPOSE_VERSION="1.11.2"
-CONF_ARG="-f docker-compose-prod-full.yml"
+CONF_ARG="-f docker-compose-prod-elk.yml"
 SCRIPT_BASE_PATH=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
 cd "$SCRIPT_BASE_PATH"
 
@@ -39,8 +39,6 @@ echo "  remove-all      Remove all containers"
 echo "  stop-all        Stop all containers running"
 echo
 }
-
-CONF_ARG="-f docker-compose-prod-elk.yml"
 
 if [ $# -eq 0 ]; then
     usage
