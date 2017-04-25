@@ -4,7 +4,8 @@ MAINTAINER Emanuele Disco <emanuele.disco@gmail.com>
 ENV LS_VERSION=5.2.1 \
     LS_HOME=/usr/share/logstash \
     DEFAULT_LS_USER=logstash \
-    LS_JAVA_OPTS="-Xmx256m -Xms256m"
+    LS_JAVA_OPTS="-Xmx256m -Xms256m" \
+    ES_HOST="http://elasticsearch:9200"
 
 RUN set -ex && \
     useradd -ms /bin/bash $DEFAULT_LS_USER && \
