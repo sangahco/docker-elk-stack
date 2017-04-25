@@ -7,9 +7,9 @@ services:
     volumes: 
     - ./curator/actions:/usr/share/curator
     environment: 
-    - CLIENT_HTTP_AUTH=${ES_USER}:${ES_PASSWORD}
-    - CLIENT_USE_SSL=True
-    - CLIENT_SSL_NO_VALIDATE=True
+    - CURATOR_HTTP_AUTH=${ES_USER}:${ES_PASSWORD}
+    - CURATOR_USE_SSL=True
+    - CURATOR_SSL_NO_VALIDATE=True
     - SNAPSHOT_REPOSITORY=local
     depends_on: 
     - elasticsearch
