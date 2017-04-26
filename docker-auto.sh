@@ -5,6 +5,8 @@ set -e
 DOCKER_COMPOSE_VERSION="1.11.2"
 CONF_ARG="-f docker-compose-prod-elk.yml"
 SCRIPT_BASE_PATH=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
+PATH=$PATH;/usr/local/bin/
+
 cd "$SCRIPT_BASE_PATH"
 
 REGISTRY_URL="$REGISTRY_URL"
