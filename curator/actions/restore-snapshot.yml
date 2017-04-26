@@ -1,0 +1,27 @@
+actions:
+  1:
+    action: restore
+    description: Restore indices from a snapshot
+    options:
+      repository: ${SNAPSHOT_REPOSITORY:backups}
+      name: ${SNAPSHOT_NAME}
+      indices: ${SNAPSHOT_INDICES}
+      include_aliases: False
+      ignore_unavailable: False
+      include_global_state: False
+      partial: False
+      rename_pattern:
+      rename_replacement:
+      extra_settings:
+      wait_for_completion: True
+      skip_repo_fs_check: True
+      disable_action: True
+      max_wait: 3600
+      wait_interval: 10
+    filters:
+    - filtertype: pattern
+      kind: prefix
+      value: curator-
+    - filtertype: state
+      state: SUCCESS
+      exclude:

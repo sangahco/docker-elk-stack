@@ -104,6 +104,7 @@ elif [ "$1" == "logs" ]; then
 
 elif [ "$1" == "backup" ]; then
     docker-compose $CONF_ARG -f docker-compose-curator.yml run curator create-snapshot.yml
+    docker-compose $CONF_ARG -f docker-compose-curator.yml run curator delete-old-snapshots.yml
     exit 0
 
 elif [ "$1" == "delete-old" ]; then
