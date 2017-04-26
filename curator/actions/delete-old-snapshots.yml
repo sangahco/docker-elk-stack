@@ -1,0 +1,19 @@
+actions:
+  1:
+    action: delete_snapshots
+    description: >-
+      Delete snapshots having prefix 'curator-' older than 15 days.
+    options:
+      repository: ${SNAPSHOT_REPOSITORY:backups}
+      ignore_empty_list: True
+      disable_action: False
+    filters:
+    - filtertype: pattern
+      kind: prefix
+      value: curator-
+    - filtertype: age
+      source: creation_date
+      direction: older
+      timestring: '%Y%m%d'
+      unit: days
+      unit_count: 15

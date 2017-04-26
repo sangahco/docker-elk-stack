@@ -3,8 +3,10 @@
 set -e
 
 DOCKER_COMPOSE_VERSION="1.11.2"
-CONF_ARG="-f docker-compose-prod-full.yml"
+CONF_ARG="-f docker-compose-prod-elk.yml"
 SCRIPT_BASE_PATH=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
+PATH=$PATH:/usr/local/bin/
+
 cd "$SCRIPT_BASE_PATH"
 
 REGISTRY_URL="$REGISTRY_URL"
@@ -39,8 +41,6 @@ echo "  remove-all      Remove all containers"
 echo "  stop-all        Stop all containers running"
 echo
 }
-
-CONF_ARG="-f docker-compose-prod-elk.yml"
 
 if [ $# -eq 0 ]; then
     usage
@@ -106,6 +106,7 @@ elif [ "$1" == "logs" ]; then
 
 elif [ "$1" == "backup" ]; then
     docker-compose $CONF_ARG -f docker-compose-curator.yml run curator create-snapshot.yml
+    docker-compose $CONF_ARG -f docker-compose-curator.yml run curator delete-old-snapshots.yml
     exit 0
 
 elif [ "$1" == "delete-old" ]; then
