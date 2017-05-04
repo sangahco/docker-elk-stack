@@ -15,6 +15,5 @@ actions:
     - filtertype: age
       source: creation_date
       direction: older
-      timestring: '%Y%m%d'
       unit: days
-      unit_count: ${SNAPSHOT_RETENTION_PERIOD:15}
+      unit_count: ${SNAPSHOT_RETENTION_PERIOD:3}
