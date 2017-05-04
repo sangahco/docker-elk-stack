@@ -14,6 +14,7 @@ RUN set -ex && \
     mkdir -p $ES_HOME && cp -a elasticsearch-*/. $ES_HOME && \
     mkdir $ES_HOME/data && \
     mkdir $ES_HOME/logs && \
+    mkdir $ES_HOME/backups && \
     curl https://s3.ap-northeast-2.amazonaws.com/sangah-b1/x-pack-${ES_VERSION}.zip -o x-pack.zip && \
     cd $ES_HOME && \
     bin/elasticsearch-plugin install --batch file:///tmp/x-pack.zip && \

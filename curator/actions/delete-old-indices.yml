@@ -11,10 +11,10 @@ actions:
     filters:
     - filtertype: pattern
       kind: prefix
-      value: logstash-
+      value: ${SNAPSHOT_INDEX_PREFIX:logstash-}
     - filtertype: age
       source: name
       direction: older
       timestring: '%Y.%m.%d'
       unit: days
-      unit_count: 90
+      unit_count: ${SNAPSHOT_INDEX_RETENTION_PERIOD:90}

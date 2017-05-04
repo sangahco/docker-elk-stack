@@ -39,6 +39,8 @@ echo "  logs            Follow the logs on console"
 echo "  login           Log in to a Docker registry"
 echo "  remove-all      Remove all containers"
 echo "  stop-all        Stop all containers running"
+echo "  backup          Create a snapshot of the entire cluster"
+echo "  delete-old      Remove indices older than # days, see curator action for more details"
 echo
 }
 
