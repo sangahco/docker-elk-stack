@@ -15,6 +15,7 @@ RUN set -ex && \
     chown -R $DEFAULT_ES_USER: $ES_HOME/config && \
     mkdir $ES_HOME/data && \
     mkdir $ES_HOME/logs && \
+    mkdir $ES_HOME/backups && \
     chown -R $DEFAULT_ES_USER: $ES_HOME && \
     sed -i -e 's/-Xms/#-Xms/' $ES_HOME/config/jvm.options && \
     sed -i -e 's/-Xmx/#-Xmx/' $ES_HOME/config/jvm.options && \

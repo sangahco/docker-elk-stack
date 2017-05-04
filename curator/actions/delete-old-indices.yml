@@ -17,4 +17,4 @@ actions:
       direction: older
       timestring: '%Y.%m.%d'
       unit: days
-      unit_count: 90
+      unit_count: ${SNAPSHOT_INDEX_RETENTION_PERIOD:90}
