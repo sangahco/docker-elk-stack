@@ -9,10 +9,12 @@ PATH=$PATH:/usr/local/bin/
 
 cd "$SCRIPT_BASE_PATH"
 
-REGISTRY_URL="$REGISTRY_URL"
-if [ -z "$REGISTRY_URL" ]; then
-    REGISTRY_URL="$(cat .env | awk 'BEGIN { FS="="; } /^REGISTRY_URL/ {sub(/\r/,"",$2); print $2;}')"
-fi
+getenv(){
+    local _env="$(printenv $1)"
+    echo "${_env:-$(cat .env | awk 'BEGIN { FS="="; } /^'$1'/ {sub(/\r/,"",$2); print $2;}')}"
+}
+
+REGISTRY_URL="$(getenv REGISTRY_URL)"
 
 if ! command -v docker-compose >/dev/null 2>&1; then
     sudo curl -L "https://github.com/docker/compose/releases/download/$DOCKER_COMPOSE_VERSION/docker-compose-$(uname -s)-$(uname -m)" \
