@@ -11,3 +11,7 @@ xpack.monitoring.elasticsearch.ssl.ca:
 xpack.monitoring.elasticsearch.url: ${ES_HOST}
 xpack.monitoring.elasticsearch.username: ${ES_USERNAME}
 xpack.monitoring.elasticsearch.password: ${ES_PASSWORD}
+
+queue.type: persisted
+queue.max_bytes: 1gb
+queue.checkpoint.writes: 1
