@@ -3,3 +3,7 @@
 http.host: "0.0.0.0"
 config.reload.automatic: true
 #log.level: debug
+
+queue.type: persisted
+queue.max_bytes: 1gb
+queue.checkpoint.writes: 1
