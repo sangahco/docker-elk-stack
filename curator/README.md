@@ -4,15 +4,15 @@ Before starting using Curator, some actions are required.
 
 ## Preparation
 
-A valid Shared File System Repository need to be created.
+A valid [Shared File System Repository](https://www.elastic.co/guide/en/elasticsearch/reference/current/modules-snapshots.html#_shared_file_system_repository) need to be created.
 
-I already set the path.repo variable to `/usr/share/elasticsearch/backups`.
-So what we need to do is registering the repository sending a request to elasticsearch.
+I already set the `path.repo` variable to `/usr/share/elasticsearch/backups` under the elasticsearch configuration.
+We need to register the repository sending a request to elasticsearch.
 
 The following command will register the repository named `backups` having relative location `backup`.
 The location is relative to the `path.repo` location.
 
-    $ curl -XPUT 'http://dev.log.sangah.com:9200/_snapshot/backups' -H 'Content-Type: application/json' -d '{
+    $ curl -XGET -u sangah --insecure 'https://localhost:9200/_snapshot/backups' -H 'Content-Type: application/json' -d '{
         "type": "fs",
         "settings": {
             "location": "backup",
@@ -25,7 +25,7 @@ using the environment variable `SNAPSHOT_REPOSITORY`.
 
 Check if the repository has been registered correctly with:
 
-    GET /_cat/repositories?v
+    curl -XGET -u sangah --insecure 'https://localhost:9200/_cat/repositories?v
 
     id      type
     backups   fs
@@ -52,6 +52,16 @@ Delete old indices
 Restore snapshot
 
     $ ./docker-auto.sh restore
+
+
+You can check the list of snapshots available using the following request:
+
+    curl -XGET -u sangah --insecure 'https://localhost:9200/_cat/snapshots/backups?v'
+
+
+You can have full information for a snapshot with the following request, just change the last part with the correct snapshot name:
+
+    curl -XGET -u sangah --insecure 'https://localhost:9200/_snapshot/backups/curator-20170717110004?pretty'
 
 
 ## Settings Up the Environment
