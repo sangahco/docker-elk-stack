@@ -3,7 +3,7 @@ MAINTAINER Emanuele Disco <emanuele.disco@gmail.com>
 
 ENV KB_HOME=/opt/kibana \
     DEFAULT_KB_USER=kibana \
-    KIBANA_VERSION=5.4.0 \
+    KIBANA_VERSION=5.4.3 \
     NODE_TLS_REJECT_UNAUTHORIZED=0
 
 RUN set -ex && \
