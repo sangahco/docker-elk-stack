@@ -2,6 +2,9 @@
 
 set -e
 
+SCRIPT_BASE_PATH=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
+cd "$SCRIPT_BASE_PATH"
+
 ###############################################
 # Extract Environment Variables from .env file
 # Ex. REGISTRY_URL="$(getenv REGISTRY_URL)"
@@ -13,11 +16,8 @@ getenv(){
 
 DOCKER_COMPOSE_VERSION="1.14.0"
 CONF_ARG="-f docker-compose-prod-elk.yml"
-SCRIPT_BASE_PATH=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
 PATH=$PATH:/usr/local/bin/
 REGISTRY_URL="$(getenv REGISTRY_URL)"
-
-cd "$SCRIPT_BASE_PATH"
 
 ########################################
 # Install docker-compose
