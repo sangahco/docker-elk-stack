@@ -6,6 +6,7 @@ analyze them, make cool charts, and it is a start point for future development a
 - **Elasticsearch** - The container for the log data, all the log is saved on this search engine.
 - **Logstash** - Is the log aggregator, it takes log from log shippers and saved it into the search engine.
 - **Kibana** - Search and visualize the log on a web interface.
+- **Curator** - Tool for backup, clean and restore of Elasticsearch indices.
 - **CAdvisor** - It is a container status analyzer, where you can monitor the memory usage, cpu usage and other stuff.
 
 ### Extra
@@ -24,6 +25,10 @@ analyze them, make cool charts, and it is a start point for future development a
 - **docker-compose-prod-elk.yml**
 
   Production configuration for the ELK stack.
+
+  **docker-compose-with-hub**
+
+  Configuration to use with the [Hub service](https://github.com/sangahco/docker-webapp-hub)
 
 - **docker-compose-cadvisor.yml**
 
@@ -69,12 +74,19 @@ Monitor the services:
 
 > **ELK stack deployment**
 > 
-> *Elasticsearch* and *Logstash* require a large amount of virtual memory, to resolve this issue,
-> execute the following command as `root` on the Docker host machine, before starting the service:
+> *Elasticsearch* and *Logstash* require a large amount of virtual memory,
+> depending on the environment Elasticsearch might not start correctly.
+> I prepared a script inside the folder `setup` to run before starting the services, so make sure you run it.
+>
+>       $ sudo setup/machine-init.sh
+>
+> Or execute the following command as `root` on the Docker host machine, before starting the service:
 >
 >       $ sudo sysctl -w vm.max_map_count=262144
 
 `Kibana` Web Interface is accessible through the port `5601`.
+
+***IMPORTANT*** The default user for Kibana is `elastic` and password `changeme`.
 
 
 ## Settings Up the Environment
