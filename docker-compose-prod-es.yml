@@ -10,9 +10,9 @@ services:
     volumes:
     - ${ES_DATA_HOME}:/usr/share/elasticsearch/data
     - ${ES_BACKUP_HOME}:/usr/share/elasticsearch/backups
+    - ./elasticsearch/config/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml
     environment:
-    - "discovery.zen.ping.unicast.hosts=dev.log.sangah.com"
-    - "discovery.zen.ping.multicast.enabled=false"
+    - "discovery.zen.ping.unicast.hosts=13.124.125.130"
     - "discovery.zen.minimum_master_nodes=2"
     ports:
     - 9200:9200     # elasticsearch
