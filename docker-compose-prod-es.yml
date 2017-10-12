@@ -3,7 +3,7 @@ version: "3"
 services:
 
   elasticsearch1:
-    build: elasticsearch
+    image: ${REGISTRY_URL}/elasticsearch:${IMAGE_TAG}
     volumes:
     - esdata:/usr/share/elasticsearch/data
     - esbackup:/usr/share/elasticsearch/backups
@@ -32,7 +32,7 @@ services:
     restart: "unless-stopped"
 
   elasticsearch2:
-    build: elasticsearch
+    image: ${REGISTRY_URL}/elasticsearch:${IMAGE_TAG}
     volumes:
     - esdata2:/usr/share/elasticsearch/data
     - esbackup:/usr/share/elasticsearch/backups
