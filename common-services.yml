@@ -2,7 +2,6 @@ version: "2"
 
 services:
   elasticsearch:
-    container_name: elasticsearch-srv
     environment: 
     - ES_JAVA_OPTS
     ulimits:
