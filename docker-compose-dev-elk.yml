@@ -12,6 +12,9 @@ services:
       - $PWD/ssl/es-cert.pem:/usr/share/elasticsearch/config/ssl/node1.crt
       - $PWD/ssl/es-key.pem:/usr/share/elasticsearch/config/ssl/node1.key
       - $PWD/ssl/ca.pem:/usr/share/elasticsearch/config/ssl/ca.crt
+    #ports:
+    #- 9200:9200     # elasticsearch
+    #- 9300:9300     # elasticsearch
 
   logstash:
     build: logstash

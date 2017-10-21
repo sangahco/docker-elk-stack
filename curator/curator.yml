@@ -5,8 +5,8 @@ client:
   url_prefix:
   use_ssl: ${CURATOR_USE_SSL:False}
   certificate: ${CURATOR_CA_CERTIFICATE}
-  client_cert:
-  client_key:
+  client_cert: ${CURATOR_SSL_KEY}
+  client_key: ${CURATOR_SSL_CERTIFICATE}
   ssl_no_validate: ${CURATOR_SSL_NO_VALIDATE:False}
   http_auth: ${CURATOR_HTTP_AUTH}
   timeout: 300

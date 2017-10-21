@@ -3,7 +3,15 @@ MAINTAINER Emanuele Disco <emanuele.disco@gmail.com>
 
 ENV KB_HOME=/opt/kibana \
     DEFAULT_KB_USER=kibana \
-    KIBANA_VERSION=5.4.3
+    KIBANA_VERSION=5.4.3 \
+    NODE_TLS_REJECT_UNAUTHORIZED=0 \
+    ES_HOST="https://elasticsearch:9200"
+
+RUN set -ex && \
+    apt-get update && apt-get -y install \
+      gettext-base && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
 
 RUN set -ex && \
     useradd -ms /bin/bash $DEFAULT_KB_USER && \

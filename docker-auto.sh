@@ -123,15 +123,21 @@ elif [ "$1" == "logs" ]; then
     exit 0
 
 elif [ "$1" == "backup" ]; then
+    docker-compose $CONF_ARG pull
+    docker-compose $CONF_ARG build --pull
     docker-compose $CONF_ARG -f docker-compose-curator.yml run curator create-snapshot.yml
     docker-compose $CONF_ARG -f docker-compose-curator.yml run curator delete-old-snapshots.yml
     exit 0
 
 elif [ "$1" == "delete-old" ]; then
+    docker-compose $CONF_ARG pull
+    docker-compose $CONF_ARG build --pull
     docker-compose $CONF_ARG -f docker-compose-curator.yml run curator delete-old-indices.yml
     exit 0
 
 elif [ "$1" == "restore" ]; then
+    docker-compose $CONF_ARG pull
+    docker-compose $CONF_ARG build --pull
     docker-compose $CONF_ARG -f docker-compose-curator.yml run curator restore-snapshot.yml
     exit 0
 
