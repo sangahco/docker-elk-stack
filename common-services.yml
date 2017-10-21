@@ -22,6 +22,8 @@ services:
     environment: 
     - LOGSPOUT=ignore
     - LS_JAVA_OPTS
+    - ES_USER
+    - ES_PASSWORD
     - ES_HOST
     extends:
       service: logging
@@ -30,6 +32,8 @@ services:
     container_name: kibana-srv
     environment: 
     - LOGSPOUT=ignore
+    - ES_USER
+    - ES_PASSWORD
     - ES_HOST
     extends:
       service: logging
