@@ -6,10 +6,12 @@ services:
     network_mode: "service:elasticsearch"
     volumes: 
     - ./curator/actions:/usr/share/curator
+    - $PWD/ssl:/mnt/ssl
     environment: 
     - CURATOR_HTTP_AUTH=${ES_USER}:${ES_PASSWORD}
     - CURATOR_USE_SSL=True
-    - CURATOR_SSL_NO_VALIDATE=True
+    - CURATOR_SSL_NO_VALIDATE=False
+    - CURATOR_CA_CERTIFICATE=/mnt/ssl/ca.pem
     - SNAPSHOT_REPOSITORY=local
     depends_on: 
     - elasticsearch

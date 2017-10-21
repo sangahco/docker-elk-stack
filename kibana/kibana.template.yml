@@ -1,0 +1,5 @@
+
+# leave the new line
+elasticsearch.username: "${ES_USER}"
+elasticsearch.password: "${ES_PASSWORD}"
+elasticsearch.url: "${ES_HOST}"

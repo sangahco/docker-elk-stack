@@ -32,6 +32,7 @@ services:
       service: nginx
     volumes: 
     - ${ES_HTPASSWD_PATH}:/usr/share/nginx/conf.d/.htpasswd
+    - $PWD/ssl:/usr/share/nginx/conf.d/ssl
     depends_on: 
     - kibana
     - elasticsearch

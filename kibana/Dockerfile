@@ -4,7 +4,14 @@ MAINTAINER Emanuele Disco <emanuele.disco@gmail.com>
 ENV KB_HOME=/opt/kibana \
     DEFAULT_KB_USER=kibana \
     KIBANA_VERSION=5.4.3 \
+<<<<<<< HEAD
     NODE_TLS_REJECT_UNAUTHORIZED=0
+=======
+    NODE_TLS_REJECT_UNAUTHORIZED=0 \
+    ES_HOST="https://elasticsearch:9200"
+
+COPY ./*.yml /tmp/config/
+>>>>>>> dev1
 
 RUN set -ex && \
     apt-get update && apt-get -y install \
@@ -18,14 +25,11 @@ RUN set -ex && \
     curl https://s3.ap-northeast-2.amazonaws.com/sangah-b1/kibana-${KIBANA_VERSION}-linux-x86_64.tar.gz -o pkg.tar.gz && \
     tar -xf pkg.tar.gz && \
     mkdir -p $KB_HOME && cp -a kibana-*/. $KB_HOME && \
+    mkdir -p $KB_HOME/config && cp /tmp/config/* $KB_HOME/config/ && \
+    chown -R $DEFAULT_KB_USER: $KB_HOME && \
     curl https://s3.ap-northeast-2.amazonaws.com/sangah-b1/x-pack-${KIBANA_VERSION}.zip -o x-pack.zip && \
     cd $KB_HOME && bin/kibana-plugin install file:///tmp/x-pack.zip && \
     rm -rf /tmp/*
-
-COPY ./kibana.yml $KB_HOME/config/
-COPY ./kibana.yml.template $KB_HOME/config/
-
-RUN chown -R $DEFAULT_KB_USER: $KB_HOME
 
 ENV PATH $KB_HOME/bin:$PATH
 
