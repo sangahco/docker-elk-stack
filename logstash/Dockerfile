@@ -5,7 +5,7 @@ ENV LS_VERSION=5.4.3 \
     LS_HOME=/usr/share/logstash \
     DEFAULT_LS_USER=logstash \
     LS_JAVA_OPTS="-Xmx256m -Xms256m" \
-    ES_HOST="https://elasticsearch:9200"
+    ES_HOST="http://elasticsearch:9200"
 
 RUN set -ex && \
     apt-get update && apt-get -y install \

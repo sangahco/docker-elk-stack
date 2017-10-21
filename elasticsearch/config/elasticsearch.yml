@@ -24,13 +24,13 @@ indices.fielddata.cache.size: 20%
 
 path.repo: ["/usr/share/elasticsearch/backups"]
 
-xpack.ssl.key:                     ${ES_HOME}/config/ssl/node1.key
-xpack.ssl.certificate:             ${ES_HOME}/config/ssl/node1.crt
-xpack.ssl.certificate_authorities: [ "${ES_HOME}/config/ssl/ca.crt" ]
+#xpack.ssl.key:                     ${ES_HOME}/config/ssl/node1.key
+#xpack.ssl.certificate:             ${ES_HOME}/config/ssl/node1.crt
+#xpack.ssl.certificate_authorities: [ "${ES_HOME}/config/ssl/ca.crt" ]
 
 # enable tls/ssl connection
-xpack.security.transport.ssl.enabled: true
-xpack.security.http.ssl.enabled: true
+xpack.security.transport.ssl.enabled: false
+xpack.security.http.ssl.enabled: false
 
 # disable ca verification
 xpack.ssl.verification_mode: none

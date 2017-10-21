@@ -4,14 +4,10 @@ MAINTAINER Emanuele Disco <emanuele.disco@gmail.com>
 ENV KB_HOME=/opt/kibana \
     DEFAULT_KB_USER=kibana \
     KIBANA_VERSION=5.4.3 \
-<<<<<<< HEAD
-    NODE_TLS_REJECT_UNAUTHORIZED=0
-=======
     NODE_TLS_REJECT_UNAUTHORIZED=0 \
-    ES_HOST="https://elasticsearch:9200"
+    ES_HOST="http://elasticsearch:9200"
 
 COPY ./*.yml /tmp/config/
->>>>>>> dev1
 
 RUN set -ex && \
     apt-get update && apt-get -y install \
