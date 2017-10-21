@@ -24,7 +24,7 @@ services:
     - LS_JAVA_OPTS
     - ES_USER
     - ES_PASSWORD
-    - ES_HOST
+    #- ES_HOST
     extends:
       service: logging
 
@@ -34,7 +34,7 @@ services:
     - LOGSPOUT=ignore
     - ES_USER
     - ES_PASSWORD
-    - ES_HOST
+    #- ES_HOST
     extends:
       service: logging
 
