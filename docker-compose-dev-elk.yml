@@ -9,20 +9,25 @@ services:
       service: elasticsearch
     volumes:
       - esdata:/usr/share/elasticsearch/data
+      - $PWD/ssl/es-cert.pem:/usr/share/elasticsearch/config/ssl/node1.crt
+      - $PWD/ssl/es-key.pem:/usr/share/elasticsearch/config/ssl/node1.key
+      - $PWD/ssl/ca.pem:/usr/share/elasticsearch/config/ssl/ca.crt
 
   logstash:
     build: logstash
     extends: 
       file: common-services.yml
       service: logstash
-    # volumes: 
-    # - ./logstash/pipeline:/usr/share/logstash/pipeline
+    volumes: 
+    - $PWD/ssl:/usr/share/logstash/config/ssl
 
   kibana:
     build: kibana
     extends: 
       file: common-services.yml
       service: kibana
+    volumes: 
+    - $PWD/ssl:/opt/kibana/config/ssl
 
   nginx:
     build: nginx
@@ -40,6 +45,8 @@ services:
     - 5000:5000     # logstash syslog/tcp
     - 5000:5000/udp # logstash syslog/udp
     - 5043:5043     # logstash beats
+    volumes:
+    - $PWD/ssl:/usr/share/nginx/conf.d/ssl
 
 volumes:
   esdata:
