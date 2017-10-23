@@ -31,9 +31,9 @@ install_docker_compose() {
 }
 
 if ! command -v docker-compose >/dev/null 2>&1; then
-    install_docker_compose
+    install_docker_compose || true
 elif [[ "$(docker-compose version --short)" != "$DOCKER_COMPOSE_VERSION" ]]; then
-    install_docker_compose
+    install_docker_compose || true
 fi
 
 usage() {

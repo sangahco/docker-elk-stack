@@ -2,9 +2,9 @@ version: "2"
 
 services:
   elasticsearch:
-    container_name: elasticsearch-srv
     environment: 
     - ES_JAVA_OPTS
+    - "network.publish_host=${ES_NODE_HOST}"
     ulimits:
       memlock:
         soft: -1

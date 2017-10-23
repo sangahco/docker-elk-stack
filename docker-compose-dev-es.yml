@@ -1,0 +1,23 @@
+version: "2"
+
+services:
+
+  elasticsearch:
+    build: elasticsearch
+    extends: 
+      file: common-services.yml
+      service: elasticsearch
+    volumes:
+    - esdata:/usr/share/elasticsearch/data
+    - ${ES_BACKUP_HOME}:/usr/share/elasticsearch/backups
+    - ./elasticsearch/config/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml
+    environment:
+    - "discovery.zen.ping.unicast.hosts=${ES_MASTER_NODE_HOST}"
+    - "discovery.zen.minimum_master_nodes=${ES_MINIMUM_MASTER_NODE}"
+    - "transport.publish_port=9301"
+    ports:
+    - 9301:9300     # elasticsearch
+
+volumes:
+  esdata:
+  esbackup:
