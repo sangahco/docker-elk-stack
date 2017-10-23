@@ -7,8 +7,6 @@ services:
     extends: 
       file: common-services.yml
       service: elasticsearch
-    volumes:
-      - esdata:/usr/share/elasticsearch/data
     ports:
     - 9200:9200     # elasticsearch
     - 9300:9300     # elasticsearch
@@ -33,3 +31,4 @@ services:
 
 volumes:
   esdata:
+  esbackup:
