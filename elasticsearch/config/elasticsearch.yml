@@ -2,7 +2,8 @@ cluster.name: elk-cluster
 node.name: ${HOSTNAME}
 
 network.host: 0.0.0.0
-#network.publish_host: _eth0_
+network.publish_host: ${network.publish_host}
+transport.publish_port: ${transport.publish_port}
 #network.bind_host: [_local_, _eth0_]
 
 http.port: 9200

@@ -1,0 +1,26 @@
+version: "2"
+
+services:
+
+  elasticsearch_extra:
+    build: elasticsearch
+    extends: 
+      file: common-services.yml
+      service: elasticsearch
+    volumes:
+    - esdata_extra:/usr/share/elasticsearch/data
+    - ${ES_BACKUP_HOME}:/usr/share/elasticsearch/backups
+    - ./elasticsearch/config/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml
+    environment:
+    - "discovery.zen.ping.unicast.hosts=${ES_MASTER_NODE_HOST}"
+    - "discovery.zen.minimum_master_nodes=2"
+    - "transport.publish_port=9301"
+    - "network.publish_host=${ES_NODE_HOST}"
+    ports:
+    #- 9201:9200     # elasticsearch
+    - 9301:9300     # elasticsearch
+    restart: "unless-stopped"
+
+volumes:
+  esdata_extra:
+  esbackup:
