@@ -1,0 +1,57 @@
+version: "2"
+
+services:
+  elasticsearch:
+    image: ${REGISTRY_URL}/elasticsearch:${IMAGE_TAG}
+    extends: 
+      file: common-services.yml
+      service: elasticsearch
+    volumes:
+    - ${ES_DATA_HOME}:/usr/share/elasticsearch/data
+    - ${ES_BACKUP_HOME}:/usr/share/elasticsearch/backups
+    restart: "unless-stopped"
+
+  logstash:
+    image: ${REGISTRY_URL}/logstash:${IMAGE_TAG}
+    extends: 
+      file: common-services.yml
+      service: logstash
+    restart: "unless-stopped"
+
+  kibana:
+    image: ${REGISTRY_URL}/kibana:${IMAGE_TAG}
+    extends: 
+      file: common-services.yml
+      service: kibana
+    restart: "unless-stopped"
+
+  nginx:
+    image: ${REGISTRY_URL}/nginx-elk:0.1
+    extends: 
+      file: common-services.yml
+      service: nginx
+    volumes: 
+    - ${ES_HTPASSWD_PATH}:/usr/share/nginx/conf.d/.htpasswd
+    depends_on: 
+    - kibana
+    - elasticsearch
+    - logstash
+    ports:
+    - 5601:5601     # kibana
+    - 9200:9200     # elasticsearch
+    - 9300:9300     # elasticsearch
+    - 5000:5000     # logstash syslog/tcp
+    - 5000:5000/udp # logstash syslog/udp
+    - 5043:5043     # logstash beats
+    restart: "unless-stopped"
+
+#   headplug:
+#     extends: 
+#       file: common-services.yml
+#       service: headplug
+#     ports:
+#     - 9100:9100
+
+volumes:
+  esdata:
+  esbackup:
