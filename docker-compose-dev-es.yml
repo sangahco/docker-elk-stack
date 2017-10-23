@@ -10,7 +10,6 @@ services:
     volumes:
     - esdata:/usr/share/elasticsearch/data
     - ${ES_BACKUP_HOME}:/usr/share/elasticsearch/backups
-    - ./elasticsearch/config/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml
     environment:
     - "discovery.zen.ping.unicast.hosts=${ES_MASTER_NODE_HOST}"
     - "discovery.zen.minimum_master_nodes=${ES_MINIMUM_MASTER_NODE}"
