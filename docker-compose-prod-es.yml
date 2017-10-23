@@ -3,25 +3,21 @@ version: "2"
 services:
 
   elasticsearch:
-    build: elasticsearch
+    image: ${REGISTRY_URL}/elasticsearch:${IMAGE_TAG}
     extends: 
       file: common-services.yml
       service: elasticsearch
     volumes:
-    - esdata:/usr/share/elasticsearch/data
+    - ${ES_DATA_HOME}:/usr/share/elasticsearch/data
     - ${ES_BACKUP_HOME}:/usr/share/elasticsearch/backups
-    - $PWD/ssl/ca.pem:/usr/share/elasticsearch/config/ssl/ca.crt
-    - $PWD/ssl/es-cert.pem:/usr/share/elasticsearch/config/ssl/node1.crt
-    - $PWD/ssl/es-key.pem:/usr/share/elasticsearch/config/ssl/node1.key
     environment:
     - "discovery.zen.ping.unicast.hosts=${ES_MASTER_NODE_HOST}"
     - "discovery.zen.minimum_master_nodes=${ES_MINIMUM_MASTER_NODE}"
     - "transport.publish_port=9301"
-    #ports:
-    #- 9301:9300     # elasticsearch
+    restart: "unless-stopped"
 
   nginx:
-    build: nginx
+    image: ${REGISTRY_URL}/nginx-elk:0.1
     extends: 
       file: common-services.yml
       service: nginx
@@ -33,8 +29,7 @@ services:
     ports:
     #- 9200:9200     # elasticsearch
     - 9301:9300     # elasticsearch
-    volumes:
-    - $PWD/ssl:/usr/share/nginx/conf.d/ssl
+    restart: "unless-stopped"
 
 volumes:
   esdata:
