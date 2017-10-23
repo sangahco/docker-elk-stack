@@ -4,7 +4,11 @@ MAINTAINER Emanuele Disco <emanuele.disco@gmail.com>
 ENV ES_VERSION=5.4.3 \
     ES_HOME=/usr/share/elasticsearch \
     DEFAULT_ES_USER=elasticsearch \
-    ES_JAVA_OPTS="-Xmx256m -Xms256m"
+    ES_JAVA_OPTS="-Xmx256m -Xms256m" \
+    discovery.zen.ping.unicast.hosts="127.0.0.1, [::1]" \
+    discovery.zen.minimum_master_nodes=1 \
+    transport.publish_port=9300 \
+    network.publish_host=0.0.0.0
 
 RUN set -ex && \
     useradd -ms /bin/bash $DEFAULT_ES_USER && \
