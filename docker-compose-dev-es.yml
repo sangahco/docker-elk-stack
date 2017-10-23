@@ -8,7 +8,7 @@ services:
       file: common-services.yml
       service: elasticsearch
     volumes:
-    - esdata_extra:/usr/share/elasticsearch/data
+    - esdata:/usr/share/elasticsearch/data
     - ${ES_BACKUP_HOME}:/usr/share/elasticsearch/backups
     - ./elasticsearch/config/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml
     environment:
@@ -19,5 +19,5 @@ services:
     - 9301:9300     # elasticsearch
 
 volumes:
-  esdata_extra:
+  esdata:
   esbackup:
