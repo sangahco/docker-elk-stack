@@ -11,6 +11,9 @@ services:
     - esdata:/usr/share/elasticsearch/data
     - ${ES_BACKUP_HOME}:/usr/share/elasticsearch/backups
     - ./elasticsearch/config/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml
+    - $PWD/ssl/ca.pem:/usr/share/elasticsearch/config/ssl/ca.crt
+    - $PWD/ssl/es-cert.pem:/usr/share/elasticsearch/config/ssl/node1.crt
+    - $PWD/ssl/es-key.pem:/usr/share/elasticsearch/config/ssl/node1.key
     environment:
     - "discovery.zen.ping.unicast.hosts=${ES_MASTER_NODE_HOST}"
     - "discovery.zen.minimum_master_nodes=${ES_MINIMUM_MASTER_NODE}"
@@ -31,6 +34,8 @@ services:
     ports:
     #- 9200:9200     # elasticsearch
     - 9301:9300     # elasticsearch
+    volumes:
+    - $PWD/ssl:/usr/share/nginx/conf.d/ssl
 
 volumes:
   esdata:
