@@ -40,8 +40,9 @@ usage() {
 echo "Usage:  $(basename "$0") [MODE] [OPTIONS] [COMMAND]"
 echo 
 echo "Mode:"
-echo "  --prod      ELK Stack for production"
-echo "  --dev       ELK Stack for development"
+echo "  --prod          ELK Stack for production"
+echo "  --dev           ELK Stack for development"
+echo "  --dev-notls     Start the ELK stack without nginx (no security)"
 echo
 echo "Options:"
 echo "  --with-cadv     Add CAdvisor service"
@@ -74,6 +75,10 @@ case $i in
         ;;
     --dev)
         CONF_ARG="-f docker-compose-dev-elk.yml"
+        shift
+        ;;
+    --dev-notls)
+        CONF_ARG="-f docker-compose-dev-nossl.yml"
         shift
         ;;
     --with-cadv)
