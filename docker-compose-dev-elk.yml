@@ -8,7 +8,8 @@ services:
       file: common-services.yml
       service: elasticsearch
     volumes:
-      - esdata:/usr/share/elasticsearch/data
+    - esdata:/usr/share/elasticsearch/data
+    - ${ES_BACKUP_HOME}:/usr/share/elasticsearch/backups
 
   logstash:
     build: logstash
@@ -43,3 +44,4 @@ services:
 
 volumes:
   esdata:
+  esbackup:
