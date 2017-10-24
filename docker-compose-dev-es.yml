@@ -7,16 +7,16 @@ services:
     extends: 
       file: common-services.yml
       service: elasticsearch
-    environment:
-    - "discovery.zen.ping.unicast.hosts=${ES_MASTER_NODE_HOST}"
-    - "discovery.zen.minimum_master_nodes=${ES_MINIMUM_MASTER_NODE}"
-    - "transport.publish_port=${ES_TRANSPORT_PORT}"
     volumes:
     - ${ES_DATA_HOME}:/usr/share/elasticsearch/data
     - ${ES_BACKUP_HOME}:/usr/share/elasticsearch/backups
     - $PWD/ssl/ca.pem:/usr/share/elasticsearch/config/ssl/ca.crt
     - $PWD/ssl/es-cert.pem:/usr/share/elasticsearch/config/ssl/node1.crt
     - $PWD/ssl/es-key.pem:/usr/share/elasticsearch/config/ssl/node1.key
+    environment:
+    - "discovery.zen.ping.unicast.hosts=${ES_MASTER_NODE_HOST}"
+    - "discovery.zen.minimum_master_nodes=${ES_MINIMUM_MASTER_NODE}"
+    - "transport.publish_port=${ES_TRANSPORT_PORT}"
 
   nginx:
     build: nginx
