@@ -10,6 +10,9 @@ services:
     ports:
     - 9200:9200     # elasticsearch
     - 9300:9300     # elasticsearch
+    volumes:
+    - ${ES_DATA_HOME}:/usr/share/elasticsearch/data
+    - ${ES_BACKUP_HOME}:/usr/share/elasticsearch/backups
 
   logstash:
     build: logstash

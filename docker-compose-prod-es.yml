@@ -10,7 +10,13 @@ services:
     environment:
     - "discovery.zen.ping.unicast.hosts=${ES_MASTER_NODE_HOST}"
     - "discovery.zen.minimum_master_nodes=${ES_MINIMUM_MASTER_NODE}"
-    - "transport.publish_port=9301"
+    - "transport.publish_port=${ES_TRANSPORT_PORT}"
+    volumes:
+    - ${ES_DATA_HOME}:/usr/share/elasticsearch/data
+    - ${ES_BACKUP_HOME}:/usr/share/elasticsearch/backups
+    - $PWD/ssl/ca.pem:/usr/share/elasticsearch/config/ssl/ca.crt
+    - $PWD/ssl/es-cert.pem:/usr/share/elasticsearch/config/ssl/node1.crt
+    - $PWD/ssl/es-key.pem:/usr/share/elasticsearch/config/ssl/node1.key
     restart: "unless-stopped"
 
   nginx:
@@ -25,7 +31,7 @@ services:
     - logstash:127.0.0.1
     ports:
     #- 9200:9200     # elasticsearch
-    - 9301:9300     # elasticsearch
+    - ${ES_TRANSPORT_PORT}:9300     # elasticsearch
     restart: "unless-stopped"
 
 volumes:
