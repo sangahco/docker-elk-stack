@@ -13,9 +13,7 @@ services:
     environment:
     - "discovery.zen.ping.unicast.hosts=${ES_MASTER_NODE_HOST}"
     - "discovery.zen.minimum_master_nodes=${ES_MINIMUM_MASTER_NODE}"
-    - "transport.publish_port=9301"
-    #ports:
-    #- 9301:9300     # elasticsearch
+    - "transport.publish_port=${ES_TRANSPORT_PORT}"
 
   nginx:
     build: nginx
@@ -29,7 +27,7 @@ services:
     - logstash:127.0.0.1
     ports:
     #- 9200:9200     # elasticsearch
-    - 9301:9300     # elasticsearch
+    - ${ES_TRANSPORT_PORT}:9300     # elasticsearch
 
 volumes:
   esdata:
