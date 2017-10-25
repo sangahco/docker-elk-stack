@@ -10,9 +10,6 @@ services:
     volumes:
     - ${ES_DATA_HOME}:/usr/share/elasticsearch/data
     - ${ES_BACKUP_HOME}:/usr/share/elasticsearch/backups
-    - $PWD/ssl/ca.pem:/usr/share/elasticsearch/config/ssl/ca.crt
-    - $PWD/ssl/es-cert.pem:/usr/share/elasticsearch/config/ssl/node1.crt
-    - $PWD/ssl/es-key.pem:/usr/share/elasticsearch/config/ssl/node1.key
 
   logstash:
     build: logstash

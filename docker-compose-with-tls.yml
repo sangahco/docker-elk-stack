@@ -2,6 +2,12 @@ version: "2"
 
 services:
 
+  elasticsearch:
+    volumes:
+    - $PWD/ssl/ca.pem:/usr/share/elasticsearch/config/ssl/ca.crt
+    - $PWD/ssl/es-cert.pem:/usr/share/elasticsearch/config/ssl/node1.crt
+    - $PWD/ssl/es-key.pem:/usr/share/elasticsearch/config/ssl/node1.key
+
   nginx:
     ports:
     - 5601:5601     # kibana
