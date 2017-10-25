@@ -46,8 +46,8 @@ echo
 echo "Options:"
 echo "  --with-cadv     Add CAdvisor service"
 echo "  --with-hub      Add encrypted connection for Kibana, hub required"
-echo "  --with-tls      Set TLS connection (with encryption)"
-echo "  --with-notls    Set TCP connection (no encryption)"
+echo "  --with-tls      Add TLS connection to ES/LS (certificates required)"
+echo "  --with-notls    Normal TCP connection (no certificates)"
 echo
 echo "Commands:"
 echo "  up              Start the services"

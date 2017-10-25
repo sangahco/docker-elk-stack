@@ -9,7 +9,6 @@ services:
     environment: 
     - CURATOR_HTTP_AUTH=${ES_USER}:${ES_PASSWORD}
     - CURATOR_USE_SSL=False
-    - CURATOR_SSL_NO_VALIDATE=True
     - SNAPSHOT_REPOSITORY=local
     depends_on: 
     - elasticsearch
