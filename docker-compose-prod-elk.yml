@@ -32,18 +32,10 @@ services:
       service: nginx
     volumes: 
     - ${ES_HTPASSWD_PATH}:/usr/share/nginx/conf.d/.htpasswd
-    - $PWD/ssl:/usr/share/nginx/conf.d/ssl
     depends_on: 
     - kibana
     - elasticsearch
     - logstash
-    ports:
-    - 5601:5601     # kibana
-    - 9200:9200     # elasticsearch
-    - 9300:9300     # elasticsearch
-    - 5000:5000     # logstash syslog/tcp
-    - 5000:5000/udp # logstash syslog/udp
-    - 5043:5043     # logstash beats
     restart: "unless-stopped"
 
 #   headplug:

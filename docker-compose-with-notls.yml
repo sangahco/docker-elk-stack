@@ -3,31 +3,17 @@ version: "2"
 services:
 
   elasticsearch:
-    build: elasticsearch
-    extends: 
-      file: common-services.yml
-      service: elasticsearch
-    volumes:
-      - esdata:/usr/share/elasticsearch/data
     ports:
     - 9200:9200     # elasticsearch
     - 9300:9300     # elasticsearch
 
   logstash:
-    build: logstash
-    extends: 
-      file: common-services.yml
-      service: logstash
     ports:
     - 5000:5000     # logstash syslog/tcp
     - 5000:5000/udp # logstash syslog/udp
     - 5043:5043     # logstash beats
 
   kibana:
-    build: kibana
-    extends: 
-      file: common-services.yml
-      service: kibana
     ports:
     - 5601:5601     # kibana
 
