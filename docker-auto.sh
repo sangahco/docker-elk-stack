@@ -42,11 +42,12 @@ echo
 echo "Mode:"
 echo "  --prod          ELK Stack for production"
 echo "  --dev           ELK Stack for development"
-echo "  --dev-notls     Start the ELK stack without nginx (no security)"
 echo
 echo "Options:"
 echo "  --with-cadv     Add CAdvisor service"
 echo "  --with-hub      Add encrypted connection for Kibana, hub required"
+echo "  --with-tls      Set TLS connection (with encryption)"
+echo "  --with-notls    Set TCP connection (no encryption)"
 echo
 echo "Commands:"
 echo "  up              Start the services"
@@ -77,8 +78,12 @@ case $i in
         CONF_ARG="-f docker-compose-dev-elk.yml"
         shift
         ;;
-    --dev-notls)
-        CONF_ARG="-f docker-compose-dev-nossl.yml"
+    --with-tls)
+        CONF_ARG="$CONF_ARG -f docker-compose-with-tls.yml"
+        shift
+        ;;
+    --with-notls)
+        CONF_ARG="$CONF_ARG -f docker-compose-with-notls.yml"
         shift
         ;;
     --with-cadv)
