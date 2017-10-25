@@ -8,7 +8,8 @@ ENV ES_VERSION=5.4.3 \
     discovery.zen.ping.unicast.hosts="127.0.0.1, [::1]" \
     discovery.zen.minimum_master_nodes=1 \
     transport.publish_port=9300 \
-    network.publish_host=0.0.0.0
+    network.publish_host=0.0.0.0 \
+    cluster.name=elk-cluster
 
 RUN set -ex && \
     useradd -ms /bin/bash $DEFAULT_ES_USER && \
