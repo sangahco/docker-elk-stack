@@ -15,20 +15,133 @@ analyze them, make cool charts, and it is a start point for future development a
 - **Cadvisor** - Monitoring service for Docker containers
 
 
+> ### In order to use TLS configuration we need to provide valid **certificate** and **key**.
+>
+> Prepare a folder with the following files:
+> - `server-cert.pem`
+> - `server-key.pem`
+> - `ca.pem`
+>
+> than change the variable `SSL_DIR` inside the file `.env` to the location of this folder.
+
+
 ## Configurations available:
 
 - **docker-compose-dev-elk.yml**
 
-  This is for testing the entire *ELK* (Elasticsearch, Logstash and Kibana) stack together with log shippers.
-  Images are built and executed.
+  For development purpose build and run Elasticsearch, Kibana and Logstash.
+  
+  Use together with `docker-compose-with-tls.yml` to use TLS connection.
+  
+  Use together with `docker-compose-with-notls.yml` to use simple TCP connection.
+
+        INTERNET <O----TLS/TCP----O> ES
+        INTERNET <O----HTTP(S)----O> ES
+        INTERNET <O----HTTP----O> KIBANA
+        INTERNET <O----TLS/TCP----O> LOGSTASH
+
+---
 
 - **docker-compose-prod-elk.yml**
 
   Production configuration for the ELK stack.
+  Same as above but will use already built images.
 
-  **docker-compose-with-hub**
+        INTERNET <----TLS/TCP----> ES
+        INTERNET <----HTTP(S)----> ES
+        INTERNET <----HTTP----> KIBANA
+        INTERNET <----TLS/TCP----> LOGSTASH
 
+
+---
+
+- **docker-compose-dev-es.yml**
+
+  Add an Elasticsearch node to the cluster!
+  This configuration launch an Elasticsearch node ready to communicate with TLS connection.
+  In order to use this configuration we need to provide valid **ssl certificate** and **key**.
+
+        ES1 <----TLS----> ES2
+        INTERNET <----TLS----> ES
+
+---
+
+- **docker-compose-dev-es-notls.yml**
+
+  Add an Elasticsearch node to the cluster!
+  This is the plain TCP configuration, no encryption, it means that the Elasticsearch nodes will talk with plain TCP.
+  If the cluster is running with TLS we need to use `docker-compose-dev-es.yml` instead.
+
+        ES1 <----TCP----> ES2
+        INTERNET <----TCP----> ES
+
+  First thing to do is change the variable `ES_MINIMUM_MASTER_NODE` accordingly, 
+  it is really important to set it correctly to run a cluster, by default is set to have 2 master nodes.
+  If you try to start one node it will standby looking for another master, this is the wanted behaviour.
+  As soon as you start another node you will see they join together!
+
+  In order to use this configuration first build the image:
+
+      $ docker-compose -f docker-compose-dev-es-notls.yml build
+
+  Than we launch one node with the following command:
+
+      $ ES_TRANSPORT_PORT=9300 docker-compose -f docker-compose-dev-es-notls.yml -p node1 up
+
+  If we want to add another node to the cluster:
+    
+      $ ES_TRANSPORT_PORT=9301 docker-compose -f docker-compose-dev-es-notls.yml -p node2 up
+
+---
+
+- **docker-compose-prod-es.yml**
+  
+  Add an Elasticsearch node to the cluster!
+  Connection is encrypted using TLS protocol.
+
+          ES1 <----TLS----> ES2
+          INTERNET <----TLS----> ES
+
+  For how to use it just see above.
+
+---
+
+- **docker-compose-with-tls.yml**
+
+  With this option we add TLS connection (encryption) between Internet and our services.
+  (**Kibana excluded use the hub for the same purpose**).
+  Nginx is used to add encryption from the outside, inside, plain TCP connection is used.
+  
+        INTERNET <----TLS----> ES
+        INTERNET <----TLS----> LOGSTASH
+        INTERNET <----HTTP----> KIBANA
+
+        ES <----HTTP----> KIBANA
+        ES <----HTTP----> LOGSTASH
+
+---
+
+- **docker-compose-with-notls.yml**
+
+  This configuration should be use only for testing since the connection is plain TCP and HTTP.
+
+        INTERNET <----TCP----> ES
+        INTERNET <----TCP----> LOGSTASH
+        INTERNET <----HTTP----> KIBANA
+
+        ES <----HTTP----> KIBANA
+        ES <----HTTP----> LOGSTASH
+
+---
+
+- **docker-compose-with-hub**
+
+  This option add TLS connection for Kibana.
   Configuration to use with the [Hub service](https://github.com/sangahco/docker-webapp-hub)
+
+        INTERNET <----HTTPS----> KIBANA
+
+---
 
 - **docker-compose-cadvisor.yml**
 
@@ -72,8 +185,8 @@ Monitor the services:
     $ ./docker-auto.sh --elk-prod ps
 
 
-> **ELK stack deployment**
-> 
+> ***IMPORTANT***
+>
 > *Elasticsearch* and *Logstash* require a large amount of virtual memory,
 > depending on the environment Elasticsearch might not start correctly.
 > I prepared a script inside the folder `setup` to run before starting the services, so make sure you run it.
@@ -84,9 +197,22 @@ Monitor the services:
 >
 >       $ sudo sysctl -w vm.max_map_count=262144
 
-`Kibana` Web Interface is accessible through the port `5601`.
 
-***IMPORTANT*** The default user for Kibana is `elastic` and password `changeme`.
+> ***IMPORTANT*** 
+>
+> `Kibana` Web Interface is accessible through the port `5601`.
+
+
+> ***IMPORTANT*** 
+> 
+> The default user for `Kibana` is `elastic` and password `changeme`.
+
+
+> **The Cluster will not work if the following condition are verified:**
+> - We are using `docker-compose-with-tls.yml`
+> - We are NOT using X-Pack
+> This is due to the image configuration, can't do much about it.
+
 
 
 ## Settings Up the Environment
