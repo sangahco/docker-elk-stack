@@ -35,17 +35,21 @@ analyze them, make cool charts, and it is a start point for future development a
   
   Use together with `docker-compose-with-notls.yml` to use simple TCP connection.
 
-        INTERNET <O----TLS/TCP----O> ES
-        INTERNET <O----HTTP(S)----O> ES
-        INTERNET <O----HTTP----O> KIBANA
-        INTERNET <O----TLS/TCP----O> LOGSTASH
+        INTERNET <----TLS/TCP----> ES
+        INTERNET <----HTTP(S)----> ES
+        INTERNET <----HTTP----> KIBANA
+        INTERNET <----TLS/TCP----> LOGSTASH
 
 ---
 
 - **docker-compose-prod-elk.yml**
 
   Production configuration for the ELK stack.
-  Same as above but will use already built images.
+  Same as above but will use built images.
+
+  Use together with `docker-compose-with-tls.yml` to use TLS connection.
+  
+  Use together with `docker-compose-with-notls.yml` to use simple TCP connection.
 
         INTERNET <----TLS/TCP----> ES
         INTERNET <----HTTP(S)----> ES
@@ -61,7 +65,7 @@ analyze them, make cool charts, and it is a start point for future development a
   This configuration launch an Elasticsearch node ready to communicate with TLS connection.
   In order to use this configuration we need to provide valid **ssl certificate** and **key**.
 
-        ES1 <----TLS----> ES2
+        ES1      <----TLS----> ES2
         INTERNET <----TLS----> ES
 
 ---
@@ -72,7 +76,7 @@ analyze them, make cool charts, and it is a start point for future development a
   This is the plain TCP configuration, no encryption, it means that the Elasticsearch nodes will talk with plain TCP.
   If the cluster is running with TLS we need to use `docker-compose-dev-es.yml` instead.
 
-        ES1 <----TCP----> ES2
+        ES1      <----TCP----> ES2
         INTERNET <----TCP----> ES
 
   First thing to do is change the variable `ES_MINIMUM_MASTER_NODE` accordingly, 
@@ -99,7 +103,7 @@ analyze them, make cool charts, and it is a start point for future development a
   Add an Elasticsearch node to the cluster!
   Connection is encrypted using TLS protocol.
 
-          ES1 <----TLS----> ES2
+          ES1      <----TLS----> ES2
           INTERNET <----TLS----> ES
 
   For how to use it just see above.
@@ -112,7 +116,7 @@ analyze them, make cool charts, and it is a start point for future development a
   (**Kibana excluded use the hub for the same purpose**).
   Nginx is used to add encryption from the outside, inside, plain TCP connection is used.
   
-        INTERNET <----TLS----> ES
+        INTERNET <----TLS/HTTPS----> ES
         INTERNET <----TLS----> LOGSTASH
         INTERNET <----HTTP----> KIBANA
 
@@ -125,7 +129,7 @@ analyze them, make cool charts, and it is a start point for future development a
 
   This configuration should be use only for testing since the connection is plain TCP and HTTP.
 
-        INTERNET <----TCP----> ES
+        INTERNET <----TCP/HTTP----> ES
         INTERNET <----TCP----> LOGSTASH
         INTERNET <----HTTP----> KIBANA
 
