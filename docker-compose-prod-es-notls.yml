@@ -3,7 +3,7 @@ version: "2"
 services:
 
   elasticsearch:
-    build: elasticsearch
+    image: ${REGISTRY_URL}/elasticsearch:${IMAGE_TAG}
     extends: 
       file: common-services.yml
       service: elasticsearch
