@@ -29,8 +29,8 @@ services:
     #- 9200:9200     # elasticsearch
     - ${ES_TRANSPORT_PORT}:9300     # elasticsearch
     volumes:
-    - $PWD/ssl/es-cert.pem:/etc/nginx/ssl/nginx.crt
-    - $PWD/ssl/es-key.pem:/etc/nginx/ssl/nginx.key
+    - $PWD/ssl/server-cert.pem:/etc/nginx/ssl/nginx.crt
+    - $PWD/ssl/server-key.pem:/etc/nginx/ssl/nginx.key
     - $PWD/ssl/ca.pem:/etc/nginx/ssl/ca.crt
 
 volumes:
