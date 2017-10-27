@@ -13,5 +13,13 @@ services:
     - 5000:5000/udp # logstash syslog/udp
     - 5043:5043     # logstash beats
 
+  # kibana:
+  #   ports:
+  #   - 5601:5601     # kibana
+
+  nginx:
+    ports:
+    - 5601:5601     # kibana
+
 volumes:
   esdata:
