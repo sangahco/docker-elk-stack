@@ -1,6 +1,10 @@
 [![HitCount](http://hits.dwyl.io/sangahco/sangahco/docker-elk-stack.svg)](http://hits.dwyl.io/sangahco/sangahco/docker-log-shippers)
-[![Jenkins](https://img.shields.io/jenkins/s/https/dev.builder.sangah.com/job/elk-xpack-5.4.svg?label=5.4-xpack&style=flat-square)]()
+
 [![Jenkins](https://img.shields.io/jenkins/s/https/dev.builder.sangah.com/job/elk-5.4.svg?label=5.4&style=flat-square)]()
+[![Jenkins](https://img.shields.io/jenkins/s/https/dev.builder.sangah.com/job/elk-xpack-5.4.svg?label=5.4-xpack&style=flat-square)]()
+
+[![Jenkins](https://img.shields.io/jenkins/s/https/dev.builder.sangah.com/job/elk-5.2.svg?label=5.2&style=flat-square)]()
+[![Jenkins](https://img.shields.io/jenkins/s/https/dev.builder.sangah.com/job/elk-xpack-5.2.svg?label=5.2-xpack&style=flat-square)]()
 
 # ELK Stack, Elasticsearch, Logstash, Kibana
 
