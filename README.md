@@ -1,3 +1,7 @@
+[![HitCount](http://hits.dwyl.io/sangahco/sangahco/docker-elk-stack.svg)](http://hits.dwyl.io/sangahco/sangahco/docker-log-shippers)
+[![Jenkins](https://img.shields.io/jenkins/s/https/dev.builder.sangah.com/job/elk-xpack-5.4.svg?label=5.4-xpack&style=flat-square)]()
+[![Jenkins](https://img.shields.io/jenkins/s/https/dev.builder.sangah.com/job/elk-5.4.svg?label=5.4&style=flat-square)]()
+
 # ELK Stack, Elasticsearch, Logstash, Kibana
 
 The purpose of this set of images is to have one server that handle logs from external web applications,
