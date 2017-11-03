@@ -3,7 +3,7 @@ version: "2"
 services:
 
   elasticsearch:
-    build: elasticsearch
+    image: ${REGISTRY_URL}/elasticsearch:${IMAGE_TAG}
     extends: 
       file: common-services.yml
       service: elasticsearch
@@ -14,24 +14,8 @@ services:
     - "discovery.zen.ping.unicast.hosts=${ES_MASTER_NODE_HOST}"
     - "discovery.zen.minimum_master_nodes=${ES_MINIMUM_MASTER_NODE}"
     - "transport.publish_port=${ES_TRANSPORT_PORT}"
-
-  nginx:
-    build: nginx
-    extends: 
-      file: common-services.yml
-      service: nginx
-    depends_on: 
-    - elasticsearch
-    extra_hosts:
-    - kibana:127.0.0.1
-    - logstash:127.0.0.1
     ports:
-    #- 9200:9200     # elasticsearch
     - ${ES_TRANSPORT_PORT}:9300     # elasticsearch
-    volumes:
-    - $PWD/ssl/server-cert.pem:/etc/nginx/ssl/nginx.crt
-    - $PWD/ssl/server-key.pem:/etc/nginx/ssl/nginx.key
-    - $PWD/ssl/ca.pem:/etc/nginx/ssl/ca.crt
 
 volumes:
   esdata:

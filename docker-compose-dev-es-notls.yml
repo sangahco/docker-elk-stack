@@ -8,7 +8,7 @@ services:
       file: common-services.yml
       service: elasticsearch
     volumes:
-    - esdata:/usr/share/elasticsearch/data
+    - ${ES_DATA_HOME}:/usr/share/elasticsearch/data
     - ${ES_BACKUP_HOME}:/usr/share/elasticsearch/backups
     environment:
     - "discovery.zen.ping.unicast.hosts=${ES_MASTER_NODE_HOST}"
