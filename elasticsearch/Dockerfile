@@ -36,7 +36,7 @@ RUN set -ex && \
 
 COPY ./config $ES_HOME/config
 
-HEALTHCHECK --interval=60s CMD curl -u ${ES_USER}:${ES_PASSWORD} --fail --insecure http://127.0.0.1:9200/_cat/health || exit 1
+HEALTHCHECK --interval=60s CMD curl --fail http://127.0.0.1:9200/_cat/health || exit 1
 
 ENV PATH $ES_HOME/bin:$PATH
 
