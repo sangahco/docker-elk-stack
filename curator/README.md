@@ -7,12 +7,12 @@ Before starting using Curator, some actions are required.
 A valid [Shared File System Repository](https://www.elastic.co/guide/en/elasticsearch/reference/current/modules-snapshots.html#_shared_file_system_repository) need to be created.
 
 I already set the `path.repo` variable to `/usr/share/elasticsearch/backups` under the elasticsearch configuration.
-We need to register the repository sending a request to elasticsearch.
+We need to register a repository in order to create snapshots.
 
-The following command will register the repository named `backups` having relative location `backup`.
+The following command will register the repository named `local` having relative location `backup`.
 The location is relative to the `path.repo` location.
 
-    $ curl -XGET -u sangah --insecure 'https://localhost:9200/_snapshot/backups' -H 'Content-Type: application/json' -d '{
+    $ curl -XGET -u sangah --insecure 'https://localhost:9200/_snapshot/local' -H 'Content-Type: application/json' -d '{
         "type": "fs",
         "settings": {
             "location": "backup",
@@ -28,7 +28,7 @@ Check if the repository has been registered correctly with:
     curl -XGET -u sangah --insecure 'https://localhost:9200/_cat/repositories?v
 
     id      type
-    backups   fs
+    local   fs
 
 ## Run
 

@@ -6,9 +6,11 @@ services:
     network_mode: "service:elasticsearch"
     volumes: 
     - ./curator/actions:/usr/share/curator
-    environment: 
-    - CURATOR_HTTP_AUTH=${ES_USER}:${ES_PASSWORD}
-    - CURATOR_USE_SSL=False
+    environment:
     - SNAPSHOT_REPOSITORY=local
+    - SNAPSHOT_INDEX_PREFIX
+    - SNAPSHOT_INDEX_RETENTION_PERIOD
+    - SNAPSHOT_RETENTION_PERIOD
+    - SNAPSHOT_NAME_PREFIX
     depends_on: 
     - elasticsearch
