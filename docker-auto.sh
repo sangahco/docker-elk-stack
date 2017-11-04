@@ -15,7 +15,7 @@ getenv(){
 }
 
 DOCKER_COMPOSE_VERSION="1.14.0"
-CONF_ARG="-f docker-compose-prod-elk.yml -f docker-compose-with-notls.yml"
+CONF_ARG="-f docker-compose-prod-elk.yml"
 PATH=$PATH:/usr/local/bin/
 REGISTRY_URL="$(getenv REGISTRY_URL)"
 
@@ -67,6 +67,9 @@ if [ $# -eq 0 ]; then
     exit 1
 fi
 
+WITH_TLS=false
+WITH_NOTLS=false
+
 for i in "$@"
 do
 case $i in
@@ -80,10 +83,12 @@ case $i in
         ;;
     --with-tls)
         CONF_ARG="$CONF_ARG -f docker-compose-with-tls.yml"
+        WITH_TLS=true
         shift
         ;;
     --with-notls)
         CONF_ARG="$CONF_ARG -f docker-compose-with-notls.yml"
+        WITH_NOTLS=true
         shift
         ;;
     --with-cadv)
@@ -103,6 +108,17 @@ case $i in
         ;;
 esac
 done
+
+if $WITH_TLS && $WITH_NOTLS; then
+    echo "You don't want to call it with both tls and notls option..."
+    usage
+    exit 1
+
+elif ! $WITH_TLS && ! $WITH_NOTLS; then
+    echo "Default to no tls (no encryption!)."
+    CONF_ARG="$CONF_ARG -f docker-compose-with-notls.yml"
+    WITH_NOTLS=true
+fi
 
 echo "Arguments: $CONF_ARG"
 echo "Command: $@"
