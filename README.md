@@ -220,10 +220,11 @@ Monitor the services:
 > The default user for `Kibana` is `elastic` and password `changeme`.
 
 
-> **The Cluster will not work if the following condition are verified:**
-> - We are using `docker-compose-with-tls.yml`
+> **The Cluster will not work if the following conditions are verified:**
+> - We are using TLS `docker-compose-with-tls.yml`
 > - We are NOT using X-Pack
-> This is due to the image configuration, can't do much about it.
+>
+> This is due to the image configuration, I can't do much about it for now.
 
 
 
