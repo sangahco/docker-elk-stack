@@ -14,7 +14,7 @@ analyze them, make cool charts, and it is a start point for future development a
 - **Elasticsearch** - The container for the log data, all the log is saved on this search engine.
 - **Logstash** - Is the log aggregator, it takes log from log shippers and saved it into the search engine.
 - **Kibana** - Search and visualize the log on a web interface.
-- **Curator** - Tool for backup, clean and restore of Elasticsearch indices.
+- **[Curator](curator/README.md)** - Tool for backup, clean and restore of Elasticsearch indices.
 - **CAdvisor** - It is a container status analyzer, where you can monitor the memory usage, cpu usage and other stuff.
 
 ### Extra
