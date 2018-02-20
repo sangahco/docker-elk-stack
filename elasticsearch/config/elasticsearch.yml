@@ -45,3 +45,4 @@ xpack.security.audit.logfile.events.exclude: [ access_granted, authentication_su
 #xpack.monitoring.enabled: false
 #xpack.graph.enabled: false
 #xpack.watcher.enabled: false
+xpack.security.enabled: false
