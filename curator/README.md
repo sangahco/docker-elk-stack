@@ -12,7 +12,7 @@ We need to register a repository in order to create snapshots.
 The following command will register the repository named `local` having relative location `backup`.
 The location is relative to the `path.repo` location.
 
-    $ curl -XGET -u sangah --insecure 'https://localhost:9200/_snapshot/local' -H 'Content-Type: application/json' -d '{
+    $ curl -XPUT -u sangah --insecure 'https://localhost:9200/_snapshot/local' -H 'Content-Type: application/json' -d '{
         "type": "fs",
         "settings": {
             "location": "backup",

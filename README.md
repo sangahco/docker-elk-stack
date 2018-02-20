@@ -14,7 +14,7 @@ analyze them, make cool charts, and it is a start point for future development a
 - **Elasticsearch** - The container for the log data, all the log is saved on this search engine.
 - **Logstash** - Is the log aggregator, it takes log from log shippers and saved it into the search engine.
 - **Kibana** - Search and visualize the log on a web interface.
-- **Curator** - Tool for backup, clean and restore of Elasticsearch indices.
+- **[Curator](curator/README.md)** - Tool for backup, clean and restore of Elasticsearch indices.
 - **CAdvisor** - It is a container status analyzer, where you can monitor the memory usage, cpu usage and other stuff.
 
 ### Extra
@@ -234,10 +234,11 @@ Monitor the services:
 > The default user for `Kibana` is `elastic` and password `changeme`.
 
 
-> **The Cluster will not work if the following condition are verified:**
-> - We are using `docker-compose-with-tls.yml`
+> **The Cluster will not work if the following conditions are verified:**
+> - We are using TLS `docker-compose-with-tls.yml`
 > - We are NOT using X-Pack
-> This is due to the image configuration, can't do much about it.
+>
+> This is due to the image configuration, I can't do much about it for now.
 
 
 
@@ -245,17 +246,20 @@ Monitor the services:
 
 The following settings are available:
 
-| Variable         | Description                                                                                                                                                                                                                                                                  | Default           |
-|------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------------|
-| REGISTRY_URL     | This is the docker registry host where to publish the images                                                                                                                                                                                                                 |                   |
-| IMAGE_TAG        | This is the docker image tag, at the moment there are two version: `5.2` and `5.2-xpack`                                                                                                                                                                                     |                   |
-| ES_JAVA_OPTS     | Elasticsearch Java options                                                                                                                                                                                                                                                   | -Xmx256m -Xms256m |
-| LS_JAVA_OPTS     | Logstash Java options                                                                                                                                                                                                                                                        | -Xmx256m -Xms256m |
-| ES_DATA_HOME     | Elasticsearch data home directory, it should be changed in production to a local directory                                                                                                                                                                                   | esdata            |
-| ES_BACKUP_HOME   | This is the folder that should be registered as snapshot repository for Elasticsearch data backup. To create a repository on Elasticsearch see [here](https://www.elastic.co/guide/en/elasticsearch/reference/current/modules-snapshots.html#_shared_file_system_repository) |                   |
-| ES_USER          | Elasticsearch user to use with `x-pack` and security enabled                                                                                                                                                                                                                 |                   |
-| ES_PASSWORD      | Elasticsearch user password to use with `x-pack` and security enabled                                                                                                                                                                                                        |                   |
-| ES_HTPASSWD_PATH |  File Path to the file htpasswd for Basic Authentication. Because X-Pack Basic license doesn't provide authentication we have to add basic authentication to Nginx                                                                                                           |                   |
-
+| Variable               | Description                                                                                                                                                                                                                                                                  | Default           |
+|------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------------|
+| REGISTRY_URL           | This is the docker registry host where to publish the images.                                                                                                                                                                                                                |                   |
+| IMAGE_TAG              | This is the docker image tag, at the moment there are two version: `5.2` and `5.2-xpack`.                                                                                                                                                                                    |                   |
+| ES_JAVA_OPTS           | Elasticsearch Java options.                                                                                                                                                                                                                                                  | -Xmx256m -Xms256m |
+| LS_JAVA_OPTS           | Logstash Java options.                                                                                                                                                                                                                                                       | -Xmx256m -Xms256m |
+| ES_DATA_HOME           | Elasticsearch data home directory, it should be changed in production to a local directory.                                                                                                                                                                                  | esdata            |
+| ES_BACKUP_HOME         | This is the folder that should be registered as snapshot repository for Elasticsearch data backup. To create a repository on Elasticsearch see [here](https://www.elastic.co/guide/en/elasticsearch/reference/current/modules-snapshots.html#_shared_file_system_repository) |                   |
+| ES_USER                | Elasticsearch user to use with `x-pack` and security enabled.                                                                                                                                                                                                                |                   |
+| ES_PASSWORD            | Elasticsearch user password to use with `x-pack` and security enabled.                                                                                                                                                                                                       |                   |
+| ES_HTPASSWD_PATH       | File Path to the file htpasswd for Basic Authentication. Because X-Pack Basic license doesn't provide authentication we have to add basic authentication to Nginx.                                                                                                           |                   |
+| ES_NODE_HOST           | The publish host is the single interface that the node advertises to other nodes in the cluster.                                                                                                                                                                             |                   |
+| ES_MASTER_NODE_HOST    | This is the 'master' server used by other nodes to join the cluster.                                                                                                                                                                                                         |                   |
+| ES_TRANSPORT_PORT      | This is the transport port used by the node (only if starting a node for cluster purpose).                                                                                                                                                                                   | 9301              |
+| ES_MINIMUM_MASTER_NODE | This is complex go here: https://www.elastic.co/guide/en/elasticsearch/reference/current/modules-node.html#master-node                                                                                                                                                       |                   |
 
 (\*) *table generated with [tablesgenerator](http://www.tablesgenerator.com/markdown_tables)*

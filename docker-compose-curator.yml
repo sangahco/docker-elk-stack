@@ -7,10 +7,12 @@ services:
     volumes: 
     - ./curator/actions:/usr/share/curator
     environment:
-    - SNAPSHOT_REPOSITORY=local
-    - SNAPSHOT_INDEX_PREFIX
-    - SNAPSHOT_INDEX_RETENTION_PERIOD
-    - SNAPSHOT_RETENTION_PERIOD
-    - SNAPSHOT_NAME_PREFIX
+    - SNAPSHOT_REPOSITORY=local          # Repository name required for creating snapshots
+    - SNAPSHOT_INDEX_PREFIX              # Indices with this prefix are scheduled for deletion (for logstash)
+    - SNAPSHOT_INDEX_RETENTION_PERIOD    # Indices older than this period are deleted (for logstash)
+    - SNAPSHOT_RETENTION_PERIOD          # Snapshots older than this period are deleted
+    - SNAPSHOT_NAME_PREFIX               # Snapshots with this prefix are scheduled for deletion
+    - SNAPSHOT_NAME                      # The name of the snapshot to create/restore
+    - SNAPSHOT_INDICES                   # The indices to restore
     depends_on: 
     - elasticsearch
