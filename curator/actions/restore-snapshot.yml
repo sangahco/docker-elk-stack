@@ -15,7 +15,7 @@ actions:
       extra_settings:
       wait_for_completion: True
       skip_repo_fs_check: True
-      disable_action: True
+      disable_action: False
       max_wait: 3600
       wait_interval: 10
     filters:
