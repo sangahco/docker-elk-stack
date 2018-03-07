@@ -14,5 +14,6 @@ services:
     - SNAPSHOT_NAME_PREFIX               # Snapshots with this prefix are scheduled for deletion
     - SNAPSHOT_NAME                      # The name of the snapshot to create/restore
     - SNAPSHOT_INDICES                   # The indices to restore
+    - CURATOR_HTTP_AUTH
     depends_on: 
     - elasticsearch
