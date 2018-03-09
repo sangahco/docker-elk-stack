@@ -1,7 +1,7 @@
 FROM openjdk:8-jre
 MAINTAINER Emanuele Disco <emanuele.disco@gmail.com>
 
-ENV ES_VERSION=5.4.3 \
+ENV ES_VERSION=5.6.8 \
     ES_HOME=/usr/share/elasticsearch \
     DEFAULT_ES_USER=elasticsearch \
     ES_JAVA_OPTS="-Xmx256m -Xms256m" \
