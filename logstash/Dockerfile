@@ -1,7 +1,7 @@
 FROM openjdk:8-jre
 MAINTAINER Emanuele Disco <emanuele.disco@gmail.com>
 
-ENV LS_VERSION=5.4.3 \
+ENV LS_VERSION=5.6.8 \
     LS_HOME=/usr/share/logstash \
     DEFAULT_LS_USER=logstash \
     LS_JAVA_OPTS="-Xmx256m -Xms256m" \
