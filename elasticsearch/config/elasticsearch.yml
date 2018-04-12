@@ -42,6 +42,8 @@ xpack.security.audit.outputs: [ logfile, index ]
 xpack.security.audit.index.events.exclude: [ access_granted, authentication_success ]
 xpack.security.audit.logfile.events.exclude: [ access_granted, authentication_success ]
 
+xpack.monitoring.collection.interval: 30s
+
 #xpack.monitoring.enabled: false
 #xpack.graph.enabled: false
 #xpack.watcher.enabled: false
