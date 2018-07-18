@@ -3,7 +3,7 @@ MAINTAINER Emanuele Disco <emanuele.disco@gmail.com>
 
 ENV KB_HOME=/opt/kibana \
     DEFAULT_KB_USER=kibana \
-    KIBANA_VERSION=5.4.3 \
+    KIBANA_VERSION=5.6.8 \
     NODE_TLS_REJECT_UNAUTHORIZED=0 \
     ES_HOST="http://elasticsearch:9200"
 

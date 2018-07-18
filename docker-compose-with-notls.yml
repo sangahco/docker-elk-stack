@@ -4,7 +4,6 @@ services:
 
   elasticsearch:
     ports:
-    - 9200:9200     # elasticsearch
     - 9300:9300     # elasticsearch
 
   logstash:
@@ -19,6 +18,7 @@ services:
 
   nginx:
     ports:
+    - 9200:9201     # elasticsearch
     - 5601:5601     # kibana
 
 volumes:
