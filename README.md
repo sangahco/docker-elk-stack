@@ -1,5 +1,8 @@
 [![HitCount](http://hits.dwyl.io/sangahco/sangahco/docker-elk-stack.svg)](http://hits.dwyl.io/sangahco/sangahco/docker-elk-stack)
 
+[![Jenkins](https://img.shields.io/jenkins/s/https/dev.builder.sangah.com/job/elk-5.6.svg?label=5.6&style=flat-square)]()
+[![Jenkins](https://img.shields.io/jenkins/s/https/dev.builder.sangah.com/job/elk-xpack-5.6.svg?label=5.6-xpack&style=flat-square)]()
+
 [![Jenkins](https://img.shields.io/jenkins/s/https/dev.builder.sangah.com/job/elk-5.4.svg?label=5.4&style=flat-square)]()
 [![Jenkins](https://img.shields.io/jenkins/s/https/dev.builder.sangah.com/job/elk-xpack-5.4.svg?label=5.4-xpack&style=flat-square)]()
 
@@ -231,7 +234,7 @@ Monitor the services:
 
 > ***IMPORTANT*** 
 > 
-> The default user for `Kibana` is `elastic` and password `changeme`.
+> The default user for `Kibana` and `Elasticsearch` is `elastic` and password `changeme`.
 
 
 > **The Cluster will not work if the following conditions are verified:**
