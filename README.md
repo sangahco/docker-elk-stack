@@ -217,7 +217,7 @@ Monitor the services:
 
 > ***IMPORTANT*** 
 > 
-> The default user for `Kibana` is `elastic` and password `changeme`.
+> The default user for `Kibana` and `Elasticsearch` is `elastic` and password `changeme`.
 
 
 > **The Cluster will not work if the following conditions are verified:**
