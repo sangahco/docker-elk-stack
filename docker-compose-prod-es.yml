@@ -17,7 +17,7 @@ services:
     restart: "unless-stopped"
 
   nginx:
-    image: ${REGISTRY_URL}/nginx-elk:0.1
+    image: ${REGISTRY_URL}/nginx-elk:${IMAGE_TAG}
     extends: 
       file: common-services.yml
       service: nginx
