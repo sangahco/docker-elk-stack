@@ -230,6 +230,22 @@ Monitor the services:
 > This is due to the image configuration, I can't do much about it for now.
 
 
+## X-Pack Update the License
+
+Register the company for a new free license here https://register.elastic.co/
+
+You will receive a link by email to download a json file, that is the license.
+
+Than, we need to send the license through a PUT request to the Elasticsearch server.
+
+On Linux:
+
+    curl -XPUT -u elastic 'http://<host>:<port>/_xpack/license' -H "Content-Type: application/json" -d @license.json
+
+On Windows:
+
+    gc .\license.json |  Invoke-WebRequest -uri http://<host>:<port>/_xpack/license -Credential elastic -Method Put
+
 
 ## Settings Up the Environment
 
