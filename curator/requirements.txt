@@ -1,1 +1,1 @@
-PyYAML==3.13 # >=4 breaks some stuff need testing!
+PyYAML==5.1 # >=4 breaks some stuff need testing!
